@@ -1,4 +1,5 @@
 import { Alert } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import firebase from '../../../firebaseConfig'
 
 const AUTH = firebase.auth()
@@ -22,6 +23,7 @@ export function LoginWithEmail(email: string, password: string) {
     console.log(user)
     Alert.alert('Successfully logged in')
   })
+  .then(() => Actions.feed())
   .catch(err => console.log(err))
 }
 
@@ -33,5 +35,6 @@ export function SignupWithEmail(newUser: { username: string, email: string, pass
     saveUserToDB(user.uid, newUser.username, newUser.email, newUser.firstname, newUser.lastname)
   })
   .then(() => Alert.alert('Successfully created your account'))
+  .then(() => Actions.feed())
   .catch(err => console.log(err))
 }

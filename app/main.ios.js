@@ -3,6 +3,7 @@ import { Router, Scene } from 'react-native-router-flux'
 
 import Login from './src/Login'
 import Signup from './src/Signup'
+import Feed from './src/Feed'
 
 const Spout = () => {
   return (
@@ -10,6 +11,7 @@ const Spout = () => {
       <Scene key="root">
         <Scene key="login" component={Login} hideNavBar />
         <Scene key="signup" component={Signup} />
+        <Scene key="feed" component={Feed} hideNavBar={false} />
       </Scene>
     </Router>
   )
