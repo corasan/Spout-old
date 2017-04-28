@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   forgotText: {
+    backgroundColor: 'transparent',
     color: '#fff',
     fontSize: 14,
   },
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   loginBtnText: {
+    backgroundColor: 'transparent',
     color: '#fff',
     fontSize: 18,
   },

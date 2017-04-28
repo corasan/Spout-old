@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image, TextInput, Text, TouchableHighlight } from 'react-native'
+import { View, Image, TextInput, Text, TouchableOpacity } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 
 export default class Login extends Component {
@@ -19,21 +20,21 @@ export default class Login extends Component {
         </View>
 
         <View style={styles.forgotContainer}>
-          <TouchableHighlight>
+          <TouchableOpacity>
             <Text style={styles.forgotText}>Forgot your password?</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={{ alignItems: 'center', marginTop: 40 }}>
-          <TouchableHighlight style={styles.loginBtn}>
+          <TouchableOpacity style={styles.loginBtn}>
             <Text style={styles.loginBtnText}>Login</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={{ position: 'absolute', bottom: 60, left: 50 }}>
-          <TouchableHighlight>
+          <TouchableOpacity onPress={() => Actions.signup({ modalVisible: true })}>
             <Text style={styles.signupBtnText}>Sign Up</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </Image>
     )
