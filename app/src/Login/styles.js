@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     width: null,
     height: null,
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    paddingTop: 30,
     paddingHorizontal: 50,
   },
   input: {
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     height: 34,
     marginTop: 30,
+    paddingHorizontal: 5,
   },
   loginText: {
     backgroundColor: 'transparent',
@@ -38,13 +40,14 @@ const styles = StyleSheet.create({
   loginBtn: {
     borderColor: '#fff',
     borderWidth: 1,
-    paddingHorizontal: 80,
     paddingVertical: 10,
+    width: 211,
   },
   loginBtnText: {
     backgroundColor: 'transparent',
     color: '#fff',
     fontSize: 18,
+    textAlign: 'center',
   },
   signupBtnText: {
     color: '#16A085',
