@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
-import { View, Image, TextInput, Text, TouchableOpacity } from 'react-native'
+import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 
 export default class Login extends Component {
+  componentWillMount() {
+    StatusBar.setHidden(true)
+  }
+
   render() {
     return (
       <Image source={require('../assets/login-background.png')} style={styles.loginContainer}>
+        <View style={{ alignItems: 'center' }}>
+          <Image source={require('../assets/spout-logo-white.png')} style={styles.logo} />
+        </View>
         <View>
           <Text style={styles.loginText}>Login</Text>
         </View>

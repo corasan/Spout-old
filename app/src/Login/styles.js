@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     // justifyContent: 'center',
-    paddingTop: 30,
+    paddingTop: 40,
     paddingHorizontal: 50,
   },
   input: {
@@ -53,6 +53,12 @@ const styles = StyleSheet.create({
     color: '#16A085',
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  logo: {
+    height: 100,
+    width: 100,
+    resizeMode: 'center',
+    marginBottom: 30,
   },
 })
 

@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     paddingHorizontal: 50,
-    paddingTop: 30,
+    paddingTop: 40,
   },
   signupText: {
     fontSize: 32,
