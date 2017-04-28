@@ -2,10 +2,23 @@ import React, { Component } from 'react'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styles from './styles'
+import { LoginWithPassword } from '../util/api'
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+    }
+  }
+
   componentWillMount() {
     StatusBar.setHidden(true)
+  }
+
+  login = () => {
+    LoginWithPassword(this.state.email, this.state.password)
   }
 
   render() {
@@ -19,11 +32,25 @@ export default class Login extends Component {
         </View>
 
         <View style={styles.inputContainer}>
-          <TextInput style={styles.input} autoCapitalize="none" keyboardType="email-address" />
+          <TextInput
+            style={styles.input}
+            autoCapitalize="none"
+            keyboardType="email-address"
+            placeholder="Email"
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+          />
         </View>
 
         <View style={styles.inputContainer}>
-          <TextInput style={styles.input} autoCapitalize="none" secureTextEntry />
+          <TextInput
+            style={styles.input}
+            autoCapitalize="none"
+            placeholder="Password"
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+            secureTextEntry
+          />
         </View>
 
         <View style={styles.forgotContainer}>
@@ -33,7 +60,7 @@ export default class Login extends Component {
         </View>
 
         <View style={{ alignItems: 'center', marginTop: 40 }}>
-          <TouchableOpacity style={styles.loginBtn}>
+          <TouchableOpacity style={styles.loginBtn} onPress={() => this.login()}>
             <Text style={styles.loginBtnText}>Login</Text>
           </TouchableOpacity>
         </View>

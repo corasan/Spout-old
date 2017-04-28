@@ -14,6 +14,8 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "arrow-body-style": "off",
+    "no-console": "off",
+    "global-require": "off",
     "semi": [2, "never"],
     "jsx-boolean-value": "warn",
     "import/no-unresolved": 0,
