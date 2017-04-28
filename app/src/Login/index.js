@@ -27,6 +27,7 @@ export default class Login extends Component {
         <View style={{ alignItems: 'center' }}>
           <Image source={require('../assets/spout-logo-white.png')} style={styles.logo} />
         </View>
+
         <View>
           <Text style={styles.loginText}>Login</Text>
         </View>

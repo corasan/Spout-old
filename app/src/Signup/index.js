@@ -16,13 +16,14 @@ export default class Signup extends Component {
         visible={this.state.modalVisible}
         onRequestClose={() => { alert('Modal has been closed.') }}
       >
+        <TouchableOpacity onPress={Actions.pop} style={{ zIndex: 10 }}>
+          <Image source={require('../assets/close.png')} style={styles.closeModal} />
+        </TouchableOpacity>
+
         <View style={styles.signupContainer}>
           <View style={{ alignItems: 'center' }}>
             <Image source={require('../assets/spout-logo.png')} style={styles.logo} />
           </View>
-          {/* <TouchableOpacity onPress={Actions.pop}>
-            <Text>X</Text>
-          </TouchableOpacity> */}
 
           <View>
             <Text style={styles.signupText}>Sign up</Text>

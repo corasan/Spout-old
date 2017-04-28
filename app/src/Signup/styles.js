@@ -43,6 +43,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  closeModal: {
+    height: 30,
+    width: 30,
+    position: 'absolute',
+    right: 15,
+    top: 15,
+  },
 })
 
 export default styles
