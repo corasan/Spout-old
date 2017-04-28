@@ -30,6 +30,9 @@ export default class Signup extends Component {
           </View>
 
           <View style={styles.inputContainer}>
+            <TextInput style={styles.input} autoCapitalize="none" placeholder="Username" />
+          </View>
+          <View style={styles.inputContainer}>
             <TextInput style={styles.input} autoCapitalize="none" placeholder="First Name" />
           </View>
           <View style={styles.inputContainer}>
@@ -41,7 +44,7 @@ export default class Signup extends Component {
           <View style={styles.inputContainer}>
             <TextInput style={styles.input} autoCapitalize="none" placeholder="Password" />
           </View>
-          
+
           <View style={{ alignItems: 'center', marginTop: 60 }}>
             <TouchableOpacity onPress={Actions.pop} style={styles.signupBtn}>
               <Text style={styles.signupBtnText}>Sign up</Text>

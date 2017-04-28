@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styles from './styles'
-import { LoginWithPassword } from '../util/api'
+import { LoginWithEmail } from '../util/api'
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class Login extends Component {
   }
 
   login = () => {
-    LoginWithPassword(this.state.email, this.state.password)
+    LoginWithEmail(this.state.email, this.state.password)
   }
 
   render() {
