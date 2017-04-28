@@ -28,6 +28,12 @@ export default class Login extends Component {
             <Text style={styles.loginBtnText}>LOGIN</Text>
           </TouchableHighlight>
         </View>
+
+        <View style={{ position: 'absolute', bottom: 60, left: 50 }}>
+          <TouchableHighlight>
+            <Text style={styles.signupBtnText}>Sign Up</Text>
+          </TouchableHighlight>
+        </View>
       </Image>
     )
   }
@@ -76,5 +82,10 @@ const styles = StyleSheet.create({
   loginBtnText: {
     color: '#fff',
     fontSize: 18,
+  },
+  signupBtnText: {
+    color: '#16A085',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 })
