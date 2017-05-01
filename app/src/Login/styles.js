@@ -1,12 +1,11 @@
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   loginContainer: {
     flex: 1,
     resizeMode: 'stretch',
     width: null,
     height: null,
-    // justifyContent: 'center',
     paddingTop: 40,
     paddingHorizontal: 50,
   },
@@ -61,5 +60,3 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 })
-
-export default styles

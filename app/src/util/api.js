@@ -3,10 +3,10 @@ import { Actions } from 'react-native-router-flux'
 import firebase from '../../../firebaseConfig'
 
 const AUTH = firebase.auth()
-const DB = firebase.database().ref('Users')
+const USER_DB = firebase.database().ref('Users')
 
 const saveUserToDB = (uid: string, username: string, email: string, firstname: string, lastname: string) => {
-  DB.child(uid).set({
+  USER_DB.child(uid).set({
     uid,
     username,
     email,

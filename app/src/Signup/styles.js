@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native'
 import { MAIN, TEXT } from '../lib/theme'
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   signupContainer: {
     flex: 1,
-    // justifyContent: 'center',
     paddingHorizontal: 50,
     paddingTop: 40,
   },
@@ -51,5 +50,3 @@ const styles = StyleSheet.create({
     top: 15,
   },
 })
-
-export default styles

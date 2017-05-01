@@ -11,7 +11,7 @@ const Spout = () => {
       <Scene key="root">
         <Scene key="login" component={Login} hideNavBar />
         <Scene key="signup" component={Signup} />
-        <Scene key="feed" component={Feed} hideNavBar={false} />
+        <Scene key="feed" component={Feed} hideNavBar={false} title="Feed" />
       </Scene>
     </Router>
   )
