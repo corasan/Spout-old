@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text, TouchableOpacity, ListView } from 'react-native'
+import { VoteUp, VoteDown, CommentIcon } from '../lib/icons'
+
 import styles from './styles'
 
 const dummyData = [
@@ -7,13 +9,15 @@ const dummyData = [
     postContent: 'This is dummy data number 1',
     username: 'corasan',
     createdAt: '10 minutes ago',
-    commentsQty: '15',
+    commentsCount: '15',
+    votes: '53',
   },
   {
     postContent: 'This is dummy data number 2, this a longer post. I should used lorem ipsum for this but meh.',
     username: 'henrypl95',
     createdAt: '2 days ago',
-    commentsQty: '34',
+    commentsCount: '34',
+    votes: '76',
   },
 ]
 
@@ -28,20 +32,33 @@ export default class PostsList extends Component {
   renderPosts = (data) => {
     return (
       <View style={styles.postBox}>
-        <View style={styles.leftCol}>
-          <Image source={require('../assets/user-male.png')} />
-          <View style={{ marginTop: 12 }}>
-            <Image source={require('../assets/up.png')} style={[styles.votes, { marginBottom: -6 }]} />
-            <Image source={require('../assets/down-gray.png')} style={[styles.votes, { marginTop: -6 }]} />
+        <View style={styles.postRow}>
+          <View style={styles.leftCol}>
+            <Image source={require('../assets/user-male.png')} />
+            <View style={{ marginTop: 12, alignItems: 'center' }}>
+              <VoteUp />
+              <VoteDown />
+              <Text style={styles.votes}>{data.votes}</Text>
+            </View>
+          </View>
+
+          <View style={styles.rightCol}>
+            <View style={styles.postHeader}>
+              <Text style={styles.usernameText}>{data.username}</Text>
+              <Text style={styles.timeAgoText}>{data.createdAt}</Text>
+            </View>
+            <Text style={styles.postContentText}>{data.postContent}</Text>
           </View>
         </View>
 
-        <View style={styles.rightCol}>
-          <View style={styles.postHeader}>
-            <Text style={styles.usernameText}>{data.username}</Text>
-            <Text style={styles.timeAgoText}>{data.createdAt}</Text>
-          </View>
-          <Text style={styles.postContentText}>{data.postContent}</Text>
+        <View style={[styles.postRow, { justifyContent: 'flex-end' }]}>
+          <TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <CommentIcon />
+              <Text style={styles.commentsText}>Comments</Text>
+            </View>
+            <Text style={styles.commentsCount}>{data.commentsCount}</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -59,3 +76,5 @@ export default class PostsList extends Component {
     )
   }
  }
+// <Image source={require('../assets/up.png')} style={[styles.votes, { marginBottom: -6 }]} />
+// <Image source={require('../assets/down-gray.png')} style={[styles.votes, { marginTop: -6 }]} />

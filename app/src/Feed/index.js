@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
+import ScrollableTabView from 'react-native-scrollable-tab-view'
 import PostsList from './postsList'
+
 import styles from './styles'
 
 export default class Feed extends Component {
@@ -12,7 +14,11 @@ export default class Feed extends Component {
   render() {
     return (
       <View style={styles.feedContainer}>
-        <PostsList />
+        <ScrollableTabView tabBarPosition="bottom">
+          <PostsList tabLabel="Feed" />
+          <View tabLabel="Second" />
+          <View tabLabel="Third" />
+        </ScrollableTabView>
       </View>
     )
   }

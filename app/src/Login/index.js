@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import styles from './styles'
 import { LoginWithEmail } from '../util/api'
+
+import styles from './styles'
 
 export default class Login extends Component {
   constructor(props) {

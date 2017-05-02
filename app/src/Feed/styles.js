@@ -14,7 +14,7 @@ export default StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.18,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     marginBottom: 15,
     // borderColor: 'red',
     // borderWidth: 1,
@@ -48,6 +48,25 @@ export default StyleSheet.create({
     flex: 0.8,
   },
   votes: {
-    height: 32, width: 30,
+    fontSize: 12,
+    marginTop: 2,
+    fontWeight: 'bold',
+    color: MAIN,
+  },
+  postRow: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  commentsText: {
+    color: MAIN,
+    fontWeight: 'bold',
+  },
+  commentsCount: {
+    position: 'absolute',
+    backgroundColor: 'transparent',
+    top: 10,
+    right: 88.5,
+    fontSize: 11,
+    color: MAIN,
   },
 })
