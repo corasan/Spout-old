@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import { MAIN, LIGHT_TEXT } from './theme'
 
 const styles = StyleSheet.create({
@@ -23,3 +24,8 @@ export const VoteDown = () => {
 export const CommentIcon = () => {
   return <EvilIcons name="comment" size={42} color={MAIN} />
 }
+
+export const FeedIcon = () => {
+  return <SimpleLineIcons name="feed" size={46} color={MAIN} />
+}
+

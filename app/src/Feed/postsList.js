@@ -36,8 +36,13 @@ export default class PostsList extends Component {
           <View style={styles.leftCol}>
             <Image source={require('../assets/user-male.png')} />
             <View style={{ marginTop: 12, alignItems: 'center' }}>
-              <VoteUp />
-              <VoteDown />
+              <TouchableOpacity>
+                <VoteUp />
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <VoteDown />
+              </TouchableOpacity>
               <Text style={styles.votes}>{data.votes}</Text>
             </View>
           </View>
@@ -51,7 +56,7 @@ export default class PostsList extends Component {
           </View>
         </View>
 
-        <View style={[styles.postRow, { justifyContent: 'flex-end' }]}>
+        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 10 }]}>
           <TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <CommentIcon />
