@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React, { Component } from 'react'
+import { StyleSheet, View } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
@@ -27,5 +27,19 @@ export const CommentIcon = () => {
 
 export const FeedIcon = () => {
   return <SimpleLineIcons name="feed" size={46} color={MAIN} />
+}
+
+export class CreatePostIcon extends Component {
+  setNativeProps(nativeProps) {
+    this.createPost.setNativeProps(nativeProps)
+  }
+
+  render() {
+    return (
+      <View ref={thisComponent => this.createPost = thisComponent}>
+        <SimpleLineIcons name="pencil" size={22} color="white" />
+      </View>
+    )
+  }
 }
 

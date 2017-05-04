@@ -56,7 +56,7 @@ export default class PostsList extends Component {
           </View>
         </View>
 
-        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 10 }]}>
+        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 2 }]}>
           <TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <CommentIcon />

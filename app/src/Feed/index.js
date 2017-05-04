@@ -16,7 +16,7 @@ export default class Feed extends Component {
     return (
       <View style={styles.feedContainer}>
         <ScrollableTabView tabBarPosition="bottom" renderTabBar={() => <TabBar />} initialPage={0}>
-          <PostsList tabLabel="feed" />
+          <PostsList tabLabel="home" />
           <View tabLabel="user" />
           <View tabLabel="settings" />
         </ScrollableTabView>

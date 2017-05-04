@@ -20,7 +20,7 @@ export default class Login extends Component {
 
   login = () => {
     // LoginWithEmail(this.state.email, this.state.password)
-    Actions.feed()
+    Actions.main()
   }
 
   render() {
