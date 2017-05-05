@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import { LoginWithEmail } from '../util/api'
+import { LoginWithEmail } from '../../util/api'
 
 import styles from './styles'
 
