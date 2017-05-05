@@ -3,10 +3,10 @@ import { Actions } from 'react-native-router-flux'
 import firebase from '../../../firebaseConfig'
 
 const AUTH = firebase.auth()
-const USER_DB = firebase.database().ref('Users')
+const USERS_DB = firebase.database().ref('Users')
 
 const saveUserToDB = (uid: string, username: string, email: string, firstname: string, lastname: string) => {
-  USER_DB.child(uid).set({
+  USERS_DB.child(uid).set({
     uid,
     username,
     email,
@@ -15,15 +15,21 @@ const saveUserToDB = (uid: string, username: string, email: string, firstname: s
   })
 }
 
+// const saveUserToLocalStorage = () => {
+
+// }
+
 // Auth API Functions
 // Login using email and password
-export function LoginWithEmail(email: string, password: string) {
+export function LoginWithEmail(email: string, password: string, cb?: Function = null) {
   AUTH.signInWithEmailAndPassword(email, password)
   .then((user) => {
-    console.log(user)
-    Alert.alert('Successfully logged in')
+    if (cb != null) {
+      cb(user)
+    }
+    Alert.alert(`Logged in as ${user.email}`)
   })
-  .then(() => Actions.feed())
+  .then(() => Actions.main())
   .catch(err => console.log(err))
 }
 
