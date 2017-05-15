@@ -1,4 +1,4 @@
-import { Alert } from 'react-native'
+import { Alert, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import firebase from '../../../firebaseConfig'
 
@@ -14,10 +14,12 @@ const saveUserToDB = (uid: string, username: string, email: string, firstname: s
     lastname,
   })
 }
+// Save user login info locally. Used to save the user session
+const saveUserSession = (email: string, password: string, uid: string) => {
+  const user = { email, password, uid }
 
-// const saveUserToLocalStorage = () => {
-
-// }
+  AsyncStorage.setItem('User', JSON.stringify(user))
+}
 
 // Auth API Functions
 // Login using email and password
@@ -40,7 +42,7 @@ export function SignupWithEmail(newUser: { username: string, email: string, pass
   .then((user) => {
     saveUserToDB(user.uid, newUser.username, newUser.email, newUser.firstname, newUser.lastname)
   })
-  .then(() => Alert.alert('Successfully created your account'))
-  .then(() => Actions.feed())
+  .then(() => Alert.alert('Account created'))
+  .then(() => Actions.main())
   .catch(err => console.log(err))
 }
