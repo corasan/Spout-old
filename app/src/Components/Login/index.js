@@ -84,8 +84,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  const { email, password } = auth
-  return { email, password }
-}
-export default connect(mapStateToProps, { loginUser })(Login)
+export default connect(null, { loginUser })(Login)

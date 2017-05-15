@@ -1,6 +1,7 @@
 import { Alert, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import firebase from '../../../firebaseConfig'
+import { loginUserSuccess } from '../Actions'
 
 const AUTH = firebase.auth()
 const USERS_DB = firebase.database().ref('Users')
@@ -24,12 +25,13 @@ const saveUserSession = (email: string, password: string, uid: string) => {
 // Auth API Functions
 // Login using email and password
 export function LoginWithEmail(email: string, password: string, cb?: Function = null) {
-  console.log('EMAIL_LOGIN:', email)
   AUTH.signInWithEmailAndPassword(email, password)
   .then((user) => {
     if (cb != null) {
       cb(user)
     }
+    saveUserSession(user.email, password, user.uid)
+    loginUserSuccess(user)
     Alert.alert(`Logged in as ${user.email}`)
   })
   .then(() => Actions.main())
