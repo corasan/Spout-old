@@ -24,6 +24,7 @@ const saveUserSession = (email: string, password: string, uid: string) => {
 // Auth API Functions
 // Login using email and password
 export function LoginWithEmail(email: string, password: string, cb?: Function = null) {
+  console.log('EMAIL_LOGIN:', email)
   AUTH.signInWithEmailAndPassword(email, password)
   .then((user) => {
     if (cb != null) {

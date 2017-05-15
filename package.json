@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "firebase": "^3.9.0",
+    "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
     "react-native-router-flux": "3.38.0",

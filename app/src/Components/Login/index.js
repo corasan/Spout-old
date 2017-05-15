@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import { LoginWithEmail } from '../../Util/api'
+// import { LoginWithEmail } from '../../Util/api'
+import { connect } from 'react-redux'
+import { loginUser } from '../../Actions/AuthActions'
 
 import styles from './styles'
 
-export default class Login extends Component {
+class Login extends Component {
+  static propTypes = {
+    loginUser: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -19,8 +26,7 @@ export default class Login extends Component {
   }
 
   login = () => {
-    // LoginWithEmail(this.state.email, this.state.password)
-    Actions.main()
+    this.props.loginUser({ email: this.state.email, password: this.state.password })
   }
 
   render() {
@@ -77,3 +83,9 @@ export default class Login extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password } = auth
+  return { email, password }
+}
+export default connect(mapStateToProps, { loginUser })(Login)
