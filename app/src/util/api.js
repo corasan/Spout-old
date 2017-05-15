@@ -38,6 +38,11 @@ export function LoginWithEmail(email: string, password: string, cb?: Function = 
   .catch(err => console.log(err))
 }
 
+// Automatically login if the user is saved locally
+export function AutoLogin(email: string, password: string) {
+  LoginWithEmail(email, password)
+}
+
 // Create user account
 // TODO: Username validation
 export function SignupWithEmail(newUser: { username: string, email: string, password: string, firstname: string, lastname: string }) {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
+import { View, Image, TextInput, Text, TouchableOpacity, StatusBar, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-// import { LoginWithEmail } from '../../Util/api'
 import { connect } from 'react-redux'
+import { AutoLogin } from '../../Util/api'
 import { loginUser } from '../../Actions/AuthActions'
 
 import styles from './styles'
@@ -23,6 +23,12 @@ class Login extends Component {
 
   componentWillMount() {
     StatusBar.setHidden(true)
+    AsyncStorage.getItem('User', (err, user) => {
+      if (user) {
+        const currentUser = JSON.parse(user)
+        AutoLogin(currentUser.email, currentUser.password)
+      }
+    })
   }
 
   login = () => {

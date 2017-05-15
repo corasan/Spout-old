@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, TouchableOpacity, Alert, View, Modal, Text } from 'react-native'
+import { StyleSheet, TouchableOpacity, Alert, View, AsyncStorage } from 'react-native'
 import { Router, Scene } from 'react-native-router-flux'
 import { MAIN } from './Components/lib/theme'
 import { CreatePostIcon } from './Components/lib/icons'
-import CreatePostModal from './Components/lib/createPostModal'
 
 import Login from './Components/Login'
 import Signup from './Components/Signup'
