@@ -6,7 +6,7 @@ import { CreatePostIcon } from './Components/lib/icons'
 
 import Login from './Components/Login'
 import Signup from './Components/Signup'
-import Feed from './Components/Feed'
+import Main from './Components/Main'
 
 export default class Routes extends Component {
   constructor() {
@@ -34,7 +34,7 @@ export default class Routes extends Component {
           <Scene key="signup" component={Signup} />
           <Scene
             key="main"
-            component={Feed}
+            component={Main}
             hideNavBar={false}
             title="Feed"
             hideBackImage
