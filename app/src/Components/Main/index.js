@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { View, Image, TextInput, Text, TouchableOpacity, StatusBar } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
-import PostsList from './postsList'
+import Feed from '../Feed'
+import Profile from '../Profile'
 import TabBar from '../lib/tabBar'
 
 import styles from './styles'
 
-export default class Feed extends Component {
+export default class Main extends Component {
   componentWillMount() {
     StatusBar.setHidden(false)
     StatusBar.setBarStyle('light-content', true)
@@ -14,10 +15,10 @@ export default class Feed extends Component {
 
   render() {
     return (
-      <View style={styles.feedContainer}>
+      <View style={styles.mainContainer}>
         <ScrollableTabView tabBarPosition="bottom" renderTabBar={() => <TabBar />} initialPage={0}>
-          <PostsList tabLabel="home" />
-          <View tabLabel="user" />
+          <Feed tabLabel="home" />
+          <Profile tabLabel="user" />
           <View tabLabel="settings" />
         </ScrollableTabView>
       </View>
