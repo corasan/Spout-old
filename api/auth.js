@@ -23,7 +23,10 @@ const saveUserSession = (email: string, password: string, uid: string) => {
 }
 
 const deleteUserSession = () => {
-  AsyncStorage.removeItem('User', () => console.log('Destroyed User Session'))
+  AsyncStorage.removeItem('User', () => {
+    Actions.login()
+    console.log('Destroyed User Session')
+  })
 }
 
 // Auth API Functions
@@ -33,10 +36,10 @@ export function LoginWithEmail(email: string, password: string) {
   .then((user) => {
     saveUserSession(user.email, password, user.uid)
     loginUserSuccess(user)
-    Alert.alert(`Logged in as ${user.email}`)
+    Alert.alert(`Welcome back ${user.email}`)
   })
   .then(() => Actions.main())
-  .catch(err => console.log(err))
+  .catch(err => Alert.alert(err.message))
 }
 
 // Automatically login if the user is saved locally
