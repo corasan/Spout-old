@@ -22,14 +22,15 @@ const saveUserSession = (email: string, password: string, uid: string) => {
   AsyncStorage.setItem('User', JSON.stringify(user))
 }
 
+const deleteUserSession = () => {
+  AsyncStorage.removeItem('User', () => console.log('Destroyed User Session'))
+}
+
 // Auth API Functions
 // Login using email and password
-export function LoginWithEmail(email: string, password: string, cb?: Function = null) {
+export function LoginWithEmail(email: string, password: string) {
   AUTH.signInWithEmailAndPassword(email, password)
   .then((user) => {
-    if (cb != null) {
-      cb(user)
-    }
     saveUserSession(user.email, password, user.uid)
     loginUserSuccess(user)
     Alert.alert(`Logged in as ${user.email}`)
@@ -53,4 +54,8 @@ export function SignupWithEmail(newUser: { username: string, email: string, pass
   .then(() => Alert.alert('Account created'))
   .then(() => Actions.main())
   .catch(err => console.log(err))
+}
+
+export function LogOut() {
+  AUTH.signOut().then(() => deleteUserSession())
 }

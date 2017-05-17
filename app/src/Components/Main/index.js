@@ -3,6 +3,7 @@ import { View, StatusBar } from 'react-native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import Feed from '../Feed'
 import Profile from '../Profile'
+import Settings from '../Settings'
 import TabBar from '../lib/tabBar'
 
 import styles from './styles'
@@ -19,7 +20,7 @@ export default class Main extends Component {
         <ScrollableTabView tabBarPosition="bottom" renderTabBar={() => <TabBar />} initialPage={0}>
           <Feed tabLabel="home" />
           <Profile tabLabel="user" />
-          <View tabLabel="settings" />
+          <Settings tabLabel="settings" />
         </ScrollableTabView>
       </View>
     )
