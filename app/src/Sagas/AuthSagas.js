@@ -1,6 +1,6 @@
 import { takeEvery, put, call, fork, all } from 'redux-saga/effects'
 import { LOGIN_USER_SUCCEEDED, LOGIN_USER_FAILED, LOGIN_USER_REQUEST } from '../Util/types'
-import { LoginWithEmail } from '../Util/api'
+import { LoginWithEmail } from '../../../api'
 
 function* requestUserAuthSaga() {
   yield takeEvery(LOGIN_USER_REQUEST, function* (data) {

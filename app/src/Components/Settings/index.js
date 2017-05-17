@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, Image, TextInput, Text, TouchableOpacity } from 'react-native'
 
-import { LogOut } from '../../Util/api'
+import { LogOut } from '../../../../api'
 
 class Settings extends Component {
   render() {

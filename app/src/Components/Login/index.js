@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { View, Image, TextInput, Text, TouchableOpacity, StatusBar, AsyncStorage } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import { AutoLogin } from '../../Util/api'
+import { AutoLogin } from '../../../../api/'
 import { loginUser } from '../../Actions/AuthActions'
 
 import styles from './styles'
