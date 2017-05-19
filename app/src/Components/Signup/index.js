@@ -47,8 +47,8 @@ export default class Signup extends Component {
         visible={this.state.modalVisible}
         onRequestClose={() => Actions.pop()}
       >
-        <TouchableOpacity onPress={this.closeModal()} style={{ zIndex: 10 }}>
-          <Image source={require('../assets/close.png')} style={styles.closeModal} />
+        <TouchableOpacity onPress={this.closeModal()} style={styles.closeModalBtn}>
+          <Image source={require('../assets/close.png')} style={styles.closeModalIcon} />
         </TouchableOpacity>
 
         <View style={styles.signupContainer}>

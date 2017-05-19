@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, View, Text, TouchableOpacity, Image } from 'react-native'
+import { Modal, View, Text, TouchableOpacity, Image, TextInput, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from './styles'
@@ -11,7 +11,12 @@ class CreatePost extends Component {
   }
 
   componentWillMount() {
+    StatusBar.setBarStyle('dark-content', true)
     this.setState({ createPostVisible: this.props.createPostVisible })
+  }
+
+  componentWillUnmount() {
+    StatusBar.setBarStyle('light-content', true)
   }
 
   closeModal = () => {
@@ -27,12 +32,15 @@ class CreatePost extends Component {
         visible={this.state.createPostVisible}
         onRequestClose={() => Actions.pop()}
       >
-        <TouchableOpacity onPress={() => this.closeModal()} style={{ zIndex: 10 }}>
-          <Image source={require('../assets/close.png')} style={styles.closeModal} />
+        <TouchableOpacity onPress={() => this.closeModal()} style={styles.closeModalBtn}>
+          <Image source={require('../assets/close.png')} style={styles.closeModalIcon} />
         </TouchableOpacity>
 
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={styles.createPostContainer}>
           <Text>CreatePost</Text>
+          <TextInput
+            style={styles.postTextContent}
+          />
         </View>
       </Modal>
     )

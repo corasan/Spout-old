@@ -42,11 +42,14 @@ export default StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-  closeModal: {
+  closeModalIcon: {
     height: 30,
     width: 30,
+  },
+  closeModalBtn: {
+    zIndex: 10,
     position: 'absolute',
     right: 15,
-    top: 15,
+    top: 32,
   },
 })
