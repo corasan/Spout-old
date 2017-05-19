@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Alert, View, AsyncStorage } from 'react-native'
-import { Router, Scene } from 'react-native-router-flux'
+import { Router, Scene, Actions } from 'react-native-router-flux'
 import { MAIN } from './Components/lib/theme'
 import { CreatePostIcon } from './Components/lib/icons'
 
 import Login from './Components/Login'
 import Signup from './Components/Signup'
 import Main from './Components/Main'
+import CreatePost from './Components/CreatePost'
 
 export default class Routes extends Component {
   constructor() {
     super()
     this.state = {
-      modalVisible: false,
+      createPostVisible: false,
     }
   }
 
   renderRightButton = () => {
     return (
       <View>
-        <TouchableOpacity onPress={() => Alert.alert('PRESSED')}>
+        <TouchableOpacity onPress={() => Actions.createPost({ createPostVisible: true })}>
           <CreatePostIcon />
         </TouchableOpacity>
       </View>
@@ -40,6 +41,7 @@ export default class Routes extends Component {
             hideBackImage
             renderRightButton={() => this.renderRightButton()}
           />
+          <Scene key="createPost" component={CreatePost} hideNavBar />
         </Scene>
       </Router>
     )

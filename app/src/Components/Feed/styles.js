@@ -14,10 +14,7 @@ export default StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.18,
-    // flexDirection: 'row',
     marginBottom: 15,
-    // borderColor: 'red',
-    // borderWidth: 1,
   },
   postHeader: {
     flexDirection: 'row',

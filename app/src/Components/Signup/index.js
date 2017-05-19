@@ -24,6 +24,11 @@ export default class Signup extends Component {
     this.setState({ modalVisible: this.props.modalVisible })
   }
 
+  closeModal = () => {
+    this.setState({ createPostVisible: false })
+    Actions.pop()
+  }
+
   signup = () => {
     SignupWithEmail({
       username: this.state.username,
@@ -40,9 +45,9 @@ export default class Signup extends Component {
         animationType={'slide'}
         transparent={false}
         visible={this.state.modalVisible}
-        onRequestClose={() => { alert('Modal has been closed.') }}
+        onRequestClose={() => Actions.pop()}
       >
-        <TouchableOpacity onPress={Actions.pop} style={{ zIndex: 10 }}>
+        <TouchableOpacity onPress={this.closeModal()} style={{ zIndex: 10 }}>
           <Image source={require('../assets/close.png')} style={styles.closeModal} />
         </TouchableOpacity>
 
@@ -54,7 +59,7 @@ export default class Signup extends Component {
           <View>
             <Text style={styles.signupText}>Sign up</Text>
           </View>
-          
+
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
