@@ -6,7 +6,7 @@ import styles from './styles'
 
 export default class Signup extends Component {
   static propTypes = {
-    modalVisible: PropTypes.bool.isRequired,
+    signupVisible: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -21,11 +21,11 @@ export default class Signup extends Component {
   }
 
   componentWillMount() {
-    this.setState({ modalVisible: this.props.modalVisible })
+    this.setState({ signupVisible: this.props.signupVisible })
   }
 
   closeModal = () => {
-    this.setState({ createPostVisible: false })
+    this.setState({ signupVisible: false })
     Actions.pop()
   }
 
@@ -44,7 +44,7 @@ export default class Signup extends Component {
       <Modal
         animationType={'slide'}
         transparent={false}
-        visible={this.state.modalVisible}
+        visible={this.state.signupVisible}
         onRequestClose={() => Actions.pop()}
       >
         <TouchableOpacity onPress={this.closeModal()} style={styles.closeModalBtn}>

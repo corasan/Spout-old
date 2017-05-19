@@ -81,7 +81,7 @@ class Login extends Component {
         </View>
 
         <View style={{ position: 'absolute', bottom: 60, left: 50 }}>
-          <TouchableOpacity onPress={() => Actions.signup({ modalVisible: true })}>
+          <TouchableOpacity onPress={() => Actions.signup({ signupVisible: true })}>
             <Text style={styles.signupBtnText}>Sign Up</Text>
           </TouchableOpacity>
         </View>

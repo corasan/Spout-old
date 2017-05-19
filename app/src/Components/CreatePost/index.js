@@ -1,18 +1,33 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, View, Text, TouchableOpacity, Image, TextInput, StatusBar, Alert } from 'react-native'
+import { Modal, View, Text, TouchableOpacity, Image, TextInput, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import { postModalVisible } from '../../Actions'
 
 import styles from './styles'
+// import { CreateNewPost } from '../../../../api'
 
 class CreatePost extends Component {
   static propTypes = {
-    createPostVisible: PropTypes.bool.isRequired,
+    postModalVisible: PropTypes.func,
+    createPostVisible: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    postModalVisible: false,
+    createPostVisible: false,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      content: '',
+    }
   }
 
   componentWillMount() {
     StatusBar.setBarStyle('dark-content', true)
-    this.setState({ createPostVisible: this.props.createPostVisible })
   }
 
   componentWillUnmount() {
@@ -20,7 +35,8 @@ class CreatePost extends Component {
   }
 
   closeModal = () => {
-    this.setState({ createPostVisible: false })
+    // this.setState({ createPostVisible: false })
+    this.props.postModalVisible(!this.props.createPostVisible)
     Actions.pop()
   }
 
@@ -29,7 +45,7 @@ class CreatePost extends Component {
       <Modal
         animationType={'slide'}
         transparent
-        visible={this.state.createPostVisible}
+        visible={this.props.createPostVisible}
         onRequestClose={() => Actions.pop()}
       >
         <TouchableOpacity onPress={() => this.closeModal()} style={styles.closeModalBtn}>
@@ -48,9 +64,14 @@ class CreatePost extends Component {
             }}
             onKeyPress={(event) => {
               if (event.nativeEvent.key === 'Enter') {
-                this.closeModal()
+                // this.createPost()
               }
             }}
+            onChangeText={(content) => {
+              console.log(content)
+              this.setState({ content })
+            }}
+            value={this.state.content}
             style={[styles.postTextContent, { height: Math.max(100, this.state.height) }]}
           />
 
@@ -60,4 +81,14 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost
+const mapDispatchToProps = (dispatch: Function) => ({
+  postModalVisible: (visible) => {
+    dispatch(postModalVisible(visible))
+  },
+})
+
+const mapStateToProps = ({ post }) => ({
+  createPostVisible: post.createPostVisible,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)

@@ -1,26 +1,43 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, Alert, View, AsyncStorage } from 'react-native'
 import { Router, Scene, Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
 import { MAIN } from './Components/lib/theme'
 import { CreatePostIcon } from './Components/lib/icons'
+
+import { postModalVisible } from './Actions'
 
 import Login from './Components/Login'
 import Signup from './Components/Signup'
 import Main from './Components/Main'
 import CreatePost from './Components/CreatePost'
 
-export default class Routes extends Component {
-  constructor() {
-    super()
-    this.state = {
-      createPostVisible: false,
+class Routes extends Component {
+  static propTypes = {
+    postModalVisible: PropTypes.func,
+    createPostVisible: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    postModalVisible: false,
+    createPostVisible: false,
+  }
+
+  componentWillUpdate(nextProps) {
+    if (this.props.createPostVisible !== nextProps.createPostVisible) {
+      Actions.createPost()
     }
+  }
+
+  openCreatePost = () => {
+    this.props.postModalVisible(!this.props.createPostVisible)
   }
 
   renderRightButton = () => {
     return (
       <View>
-        <TouchableOpacity onPress={() => Actions.createPost({ createPostVisible: true })}>
+        <TouchableOpacity onPress={() => this.openCreatePost()}>
           <CreatePostIcon />
         </TouchableOpacity>
       </View>
@@ -47,6 +64,18 @@ export default class Routes extends Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  postModalVisible: (visible) => {
+    dispatch(postModalVisible(visible))
+  },
+})
+
+const mapStateToProps = ({ post }) => ({
+  createPostVisible: post.createPostVisible,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes)
 
 const styles = StyleSheet.create({
   navBar: {
