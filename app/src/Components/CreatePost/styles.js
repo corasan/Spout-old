@@ -19,9 +19,12 @@ export default StyleSheet.create({
     top: 32,
   },
   postTextContent: {
-    borderColor: 'red',
-    borderWidth: 2,
+    borderColor: MAIN,
+    borderWidth: 1,
     height: 100,
     borderRadius: 6,
+    padding: 6,
+    fontSize: 16,
+    maxHeight: 200,
   },
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, View, Text, TouchableOpacity, Image, TextInput, StatusBar } from 'react-native'
+import { Modal, View, Text, TouchableOpacity, Image, TextInput, StatusBar, Alert } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 
 import styles from './styles'
@@ -39,8 +39,21 @@ class CreatePost extends Component {
         <View style={styles.createPostContainer}>
           <Text>CreatePost</Text>
           <TextInput
-            style={styles.postTextContent}
+            multiline
+            autoFocus
+            maxLength={300}
+            returnKeyType="send"
+            onContentSizeChange={(event) => {
+              this.setState({ height: event.nativeEvent.contentSize.height })
+            }}
+            onKeyPress={(event) => {
+              if (event.nativeEvent.key === 'Enter') {
+                this.closeModal()
+              }
+            }}
+            style={[styles.postTextContent, { height: Math.max(100, this.state.height) }]}
           />
+
         </View>
       </Modal>
     )
