@@ -87,6 +87,16 @@ class Signup extends Component {
               secureTextEntry
             />
           </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="Confirm Password"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+              secureTextEntry
+            />
+          </View>
 
           <View style={styles.signupBtnContainer}>
             <TouchableOpacity onPress={() => this.signup()} style={styles.signupBtn}>
