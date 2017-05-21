@@ -9,12 +9,12 @@ export const createPost = (payload: Object) => ({
   payload,
 })
 
-export const postModalVisible = (payload: boolean) => ({
+export const openCreatePostModal = (payload: boolean) => ({
   type: CREATE_POST_MODAL_VISIBLE,
   payload,
 })
 
-// export const postModalVisible = (payload: boolean) => {
+// export const openCreatePostModal = (payload: boolean) => {
 //   return (dispatch) => {
 //     Actions.createPost()
 //     dispatchOpenCreatePost(dispatch, parseInt)

@@ -1,14 +1,12 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { View, TextInput, Text, Modal, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { SignupWithEmail } from '../../../../api'
+import { openSignupModal } from '../../Actions/AuthActions'
 import styles from './styles'
-
+// TODO: make my own Text component with default font
 export default class Signup extends Component {
-  static propTypes = {
-    signupVisible: PropTypes.bool.isRequired,
-  }
-
   constructor(props) {
     super(props)
     this.state = {
@@ -18,15 +16,6 @@ export default class Signup extends Component {
       email: '',
       password: '',
     }
-  }
-
-  componentWillMount() {
-    this.setState({ signupVisible: this.props.signupVisible })
-  }
-
-  closeModal = () => {
-    this.setState({ signupVisible: false })
-    Actions.pop()
   }
 
   signup = () => {
@@ -41,13 +30,8 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <Modal
-        animationType={'slide'}
-        transparent={false}
-        visible={this.state.signupVisible}
-        onRequestClose={() => Actions.pop()}
-      >
-        <TouchableOpacity onPress={this.closeModal()} style={styles.closeModalBtn}>
+      <View>
+        <TouchableOpacity onPress={Actions.pop} style={styles.closeModalBtn}>
           <Image source={require('../assets/close.png')} style={styles.closeModalIcon} />
         </TouchableOpacity>
 
@@ -111,7 +95,7 @@ export default class Signup extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </View>
     )
   }
 }

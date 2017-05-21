@@ -6,32 +6,27 @@ import { connect } from 'react-redux'
 import { MAIN } from './Components/lib/theme'
 import { CreatePostIcon } from './Components/lib/icons'
 
-import { postModalVisible } from './Actions'
+import { openCreatePostModal } from './Actions'
 
 import Login from './Components/Login'
-import Signup from './Components/Signup'
+import Signup from './Components/Signup/'
 import Main from './Components/Main'
 import CreatePost from './Components/CreatePost'
 
 class Routes extends Component {
   static propTypes = {
-    postModalVisible: PropTypes.func,
-    createPostVisible: PropTypes.bool,
+    openCreatePostModal: PropTypes.func.isRequired,
+    createPostVisible: PropTypes.bool.isRequired,
   }
 
-  static defaultProps = {
-    postModalVisible: false,
-    createPostVisible: false,
-  }
-
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.createPostVisible !== nextProps.createPostVisible) {
       Actions.createPost()
     }
   }
 
   openCreatePost = () => {
-    this.props.postModalVisible(!this.props.createPostVisible)
+    this.props.openCreatePostModal(!this.props.createPostVisible)
   }
 
   renderRightButton = () => {
@@ -66,8 +61,8 @@ class Routes extends Component {
 }
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  postModalVisible: (visible) => {
-    dispatch(postModalVisible(visible))
+  openCreatePostModal: (visible) => {
+    dispatch(openCreatePostModal(visible))
   },
 })
 

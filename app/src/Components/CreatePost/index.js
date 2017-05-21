@@ -3,20 +3,14 @@ import PropTypes from 'prop-types'
 import { Modal, View, Text, TouchableOpacity, Image, TextInput, StatusBar } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import { postModalVisible } from '../../Actions'
+import { openCreatePostModal } from '../../Actions'
 
 import styles from './styles'
-// import { CreateNewPost } from '../../../../api'
 
 class CreatePost extends Component {
   static propTypes = {
-    postModalVisible: PropTypes.func,
-    createPostVisible: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    postModalVisible: false,
-    createPostVisible: false,
+    openCreatePostModal: PropTypes.func.isRequired,
+    createPostVisible: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -35,8 +29,7 @@ class CreatePost extends Component {
   }
 
   closeModal = () => {
-    // this.setState({ createPostVisible: false })
-    this.props.postModalVisible(!this.props.createPostVisible)
+    this.props.openCreatePostModal(!this.props.createPostVisible)
     Actions.pop()
   }
 
@@ -82,8 +75,8 @@ class CreatePost extends Component {
 }
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  postModalVisible: (visible) => {
-    dispatch(postModalVisible(visible))
+  openCreatePostModal: (visible) => {
+    dispatch(openCreatePostModal(visible))
   },
 })
 

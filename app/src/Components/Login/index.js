@@ -38,51 +38,49 @@ class Login extends Component {
   render() {
     return (
       <Image source={require('../assets/login-background.png')} style={styles.loginContainer}>
-        <View style={{ alignItems: 'center' }}>
-          <Image source={require('../assets/spout-logo-white.png')} style={styles.logo} />
+        <View style={styles.loginBoxContainer}>
+          <View style={{ alignItems: 'center', marginVertical: 12 }}>
+            <Image source={require('../assets/logo-login.png')} style={styles.logo} />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              keyboardType="email-address"
+              placeholder="Email"
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="Password"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+              secureTextEntry
+            />
+          </View>
+
+          <View style={styles.forgotContainer}>
+            <TouchableOpacity>
+              <Text style={styles.forgotText}>Forgot your password?</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.loginBtnContainer}>
+            <TouchableOpacity style={styles.loginBtn} onPress={() => this.login()}>
+              <Text style={styles.loginBtnText}>LOGIN</Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
 
-        <View>
-          <Text style={styles.loginText}>Login</Text>
-        </View>
-
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            keyboardType="email-address"
-            placeholder="Email"
-            value={this.state.email}
-            onChangeText={email => this.setState({ email })}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="Password"
-            value={this.state.password}
-            onChangeText={password => this.setState({ password })}
-            secureTextEntry
-          />
-        </View>
-
-        <View style={styles.forgotContainer}>
-          <TouchableOpacity>
-            <Text style={styles.forgotText}>Forgot your password?</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={{ alignItems: 'center', marginTop: 40 }}>
-          <TouchableOpacity style={styles.loginBtn} onPress={() => this.login()}>
-            <Text style={styles.loginBtnText}>Login</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={{ position: 'absolute', bottom: 60, left: 50 }}>
-          <TouchableOpacity onPress={() => Actions.signup({ signupVisible: true })}>
-            <Text style={styles.signupBtnText}>Sign Up</Text>
+        <View style={{ position: 'absolute', bottom: 20 }}>
+          <TouchableOpacity onPress={Actions.signup}>
+            <Text style={styles.signupBtnText}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
       </Image>
@@ -90,4 +88,10 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { loginUser })(Login)
+const mapDispatchToProps = (dispatch: Function) => ({
+  loginUser: (userCred) => {
+    dispatch(loginUser(userCred))
+  },
+})
+
+export default connect(null, mapDispatchToProps)(Login)

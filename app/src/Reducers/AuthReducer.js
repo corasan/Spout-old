@@ -1,4 +1,8 @@
-import { LOGIN_USER_SUCCEEDED, LOGIN_USER_REQUEST, LOGIN_USER_FAILED } from '../Util/types'
+import {
+  LOGIN_USER_SUCCEEDED,
+  LOGIN_USER_REQUEST,
+  LOGIN_USER_FAILED,
+} from '../Util/types'
 
 const INITIAL_STATE = {
   userLogin: {},
