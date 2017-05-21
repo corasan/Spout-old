@@ -11,7 +11,7 @@ import styles from './styles'
 export default class Main extends Component {
   componentWillMount() {
     StatusBar.setHidden(false)
-    StatusBar.setBarStyle('light-content', true)
+    StatusBar.setBarStyle('dark-content', true)
   }
 
   render() {

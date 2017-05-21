@@ -1,5 +1,5 @@
 import { Alert, AsyncStorage } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { Actions, ActionConst } from 'react-native-router-flux'
 import firebase from '../firebaseConfig'
 import { loginUserSuccess } from '../app/src/Actions'
 
@@ -24,7 +24,7 @@ const saveUserSession = (email: string, password: string, uid: string) => {
 
 const deleteUserSession = () => {
   AsyncStorage.removeItem('User', () => {
-    Actions.login()
+    Actions.login({ type: ActionConst.RESET })
     console.log('Destroyed User Session')
   })
 }
@@ -38,7 +38,7 @@ export function LoginWithEmail(email: string, password: string) {
     loginUserSuccess(user)
     Alert.alert(`Welcome back ${user.email}`)
   })
-  .then(() => Actions.main())
+  .then(() => Actions.main({ type: ActionConst.REPLACE }))
   .catch(err => Alert.alert(err.message))
 }
 
@@ -55,7 +55,7 @@ export function SignupWithEmail(newUser: { username: string, email: string, pass
     saveUserToDB(user.uid, newUser.username, newUser.email, newUser.firstname, newUser.lastname)
   })
   .then(() => Alert.alert('Account created'))
-  .then(() => Actions.main())
+  .then(() => Actions.main({ type: ActionConst.REPLACE }))
   .catch(err => console.log(err))
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, Alert, View, AsyncStorage } from 'react-native'
 import { Router, Scene, Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import { MAIN } from './Components/lib/theme'
+import { BACKGROUND_GRAY, TINT } from './Components/lib/theme'
 import { CreatePostIcon } from './Components/lib/icons'
 
 import { openCreatePostModal } from './Actions'
@@ -31,7 +31,7 @@ class Routes extends Component {
 
   renderRightButton = () => {
     return (
-      <View>
+      <View style={{ marginRight: 5 }}>
         <TouchableOpacity onPress={() => this.openCreatePost()}>
           <CreatePostIcon />
         </TouchableOpacity>
@@ -41,7 +41,7 @@ class Routes extends Component {
 
   render() {
     return (
-      <Router navigationBarStyle={styles.navBar} titleStyle={styles.title}>
+      <Router navigationBarStyle={styles.navBar} titleStyle={styles.title} sceneStyle={styles.appBackground}>
         <Scene key="root">
           <Scene key="login" component={Login} hideNavBar />
           <Scene key="signup" component={Signup} />
@@ -50,10 +50,11 @@ class Routes extends Component {
             component={Main}
             hideNavBar={false}
             title="Feed"
+            titleStyle={{ fontFamily: 'ChalkboardSE-Bold', color: TINT }}
             hideBackImage
             renderRightButton={() => this.renderRightButton()}
           />
-          <Scene key="createPost" component={CreatePost} hideNavBar />
+          <Scene key="createPost" component={CreatePost} hideNavBar direction="vertical" />
         </Scene>
       </Router>
     )
@@ -74,11 +75,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(Routes)
 
 const styles = StyleSheet.create({
   navBar: {
-    backgroundColor: MAIN,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.15)',
+    height: 66,
   },
   title: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  appBackground: {
+    backgroundColor: BACKGROUND_GRAY,
   },
 })

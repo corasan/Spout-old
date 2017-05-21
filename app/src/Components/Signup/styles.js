@@ -10,7 +10,7 @@ export default StyleSheet.create({
   signupBoxContainer: {
     marginTop: -30,
     justifyContent: 'center',
-    width: 320,
+    width: 326,
     backgroundColor: '#FFF',
     paddingBottom: 15,
     borderRadius: 4,

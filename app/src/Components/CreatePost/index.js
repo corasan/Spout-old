@@ -20,13 +20,13 @@ class CreatePost extends Component {
     }
   }
 
-  componentWillMount() {
-    StatusBar.setBarStyle('dark-content', true)
-  }
+  // componentWillMount() {
+  //   StatusBar.setBarStyle('dark-content', true)
+  // }
 
-  componentWillUnmount() {
-    StatusBar.setBarStyle('light-content', true)
-  }
+  // componentWillUnmount() {
+  //   StatusBar.setBarStyle('light-content', true)
+  // }
 
   closeModal = () => {
     this.props.openCreatePostModal(!this.props.createPostVisible)

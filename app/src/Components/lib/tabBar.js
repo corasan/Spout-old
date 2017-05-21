@@ -44,13 +44,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 10,
+    backgroundColor: '#FFFFFF',
   },
   tabs: {
     height: 46,
     flexDirection: 'row',
     paddingTop: 8,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(0,0,0,0.05)',
+    borderTopColor: 'rgba(0, 0, 0, 0.15)',
+    backgroundColor: '#FFFFFF',
   },
 })
 
