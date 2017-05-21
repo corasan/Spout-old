@@ -11,6 +11,7 @@ import styles from './styles'
 class Login extends Component {
   static propTypes = {
     loginUser: PropTypes.func.isRequired,
+    authBackground: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -37,7 +38,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Image source={require('../assets/login-background.png')} style={styles.loginContainer}>
+      <Image source={this.props.authBackground} style={styles.loginContainer}>
         <View style={styles.loginBoxContainer}>
           <View style={{ alignItems: 'center', marginVertical: 12 }}>
             <Image source={require('../assets/logo-login.png')} style={styles.logo} />
@@ -94,4 +95,8 @@ const mapDispatchToProps = (dispatch: Function) => ({
   },
 })
 
-export default connect(null, mapDispatchToProps)(Login)
+const mapStateToProps = ({ auth }) => ({
+  authBackground: auth.authBackground,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

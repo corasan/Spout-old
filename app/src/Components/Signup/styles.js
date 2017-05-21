@@ -1,55 +1,58 @@
 import { StyleSheet } from 'react-native'
-import { MAIN, TEXT } from '../lib/theme'
+import { BACKGROUND_GRAY, IOS_FONT, MAIN, TINT } from '../lib/theme'
 
 export default StyleSheet.create({
   signupContainer: {
-    flex: 1,
-    paddingHorizontal: 50,
-    paddingTop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode: 'cover',
   },
-  signupText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: MAIN,
-  },
-  input: {
-    width: 266,
-    height: 34,
-    color: TEXT,
+  signupBoxContainer: {
+    marginTop: -30,
+    justifyContent: 'center',
+    width: 313,
+    backgroundColor: '#FFF',
+    paddingBottom: 15,
+    borderRadius: 4,
+    shadowOffset: { width: 0, height: 1 },
+    shadowColor: '#000000',
+    shadowOpacity: 0.27,
   },
   inputContainer: {
-    borderBottomColor: MAIN,
-    borderBottomWidth: 1,
-    height: 34,
-    marginTop: 30,
-    paddingHorizontal: 5,
+    paddingHorizontal: 32,
   },
-  logo: {
-    height: 100,
-    width: 100,
-    resizeMode: 'center',
-    marginBottom: 20,
+  input: {
+    height: 44,
+    backgroundColor: BACKGROUND_GRAY,
+    borderRadius: 4,
+    marginVertical: 8,
+    paddingHorizontal: 8,
+    fontFamily: IOS_FONT,
+    color: TINT,
+  },
+  signupBtnContainer: {
+    paddingHorizontal: 18,
+    marginTop: 40,
   },
   signupBtn: {
-    paddingVertical: 10,
     backgroundColor: MAIN,
-    width: 211,
-    borderWidth: 0,
+    alignItems: 'center',
+    paddingVertical: 9,
+    borderRadius: 4,
   },
   signupBtnText: {
+    color: '#FFF',
+    fontFamily: IOS_FONT,
+    fontSize: 20,
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  loginBtnText: {
+    fontSize: 22,
+    color: '#FFF',
     backgroundColor: 'transparent',
-    color: '#fff',
-    fontSize: 18,
-    textAlign: 'center',
-  },
-  closeModalIcon: {
-    height: 30,
-    width: 30,
-  },
-  closeModalBtn: {
-    zIndex: 10,
-    position: 'absolute',
-    right: 15,
-    top: 32,
+    fontFamily: IOS_FONT,
   },
 })

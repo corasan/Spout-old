@@ -3,13 +3,9 @@ import {
   CREATE_POST_SUCCEEDED,
   CREATE_POST_MODAL_VISIBLE,
 } from '../Util/types'
+import InitialState from './initialState'
 
-const INITIAL_STATE = {
-  post: {},
-  createPostVisible: false,
-}
-
-export default (state = INITIAL_STATE, action) => {
+export default (state = InitialState.postState, action) => {
   switch (action.type) {
     case CREATE_POST_REQUEST:
       return { ...state, post: action.payload }

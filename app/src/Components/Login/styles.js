@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native'
-import { BACKGROUND_GRAY, MAIN, IOS_FONT } from '../lib/theme'
+import { BACKGROUND_GRAY, MAIN, IOS_FONT, TINT } from '../lib/theme'
 
 export default StyleSheet.create({
   loginContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    resizeMode: 'cover',
   },
   loginBoxContainer: {
     marginTop: -30,
@@ -27,6 +28,7 @@ export default StyleSheet.create({
     marginVertical: 8,
     paddingHorizontal: 8,
     fontFamily: IOS_FONT,
+    color: TINT,
   },
   forgotContainer: {
     alignItems: 'flex-end',
