@@ -4,6 +4,7 @@ import { Modal, View, Text, TouchableOpacity, Image, TextInput, Dimensions } fro
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { openCreatePostModal } from '../../Actions'
+import { CreateNewPost } from '../../../../api'
 
 import styles from './styles'
 
@@ -23,14 +24,6 @@ class CreatePost extends Component {
     }
   }
 
-  // componentWillMount() {
-  //   StatusBar.setBarStyle('dark-content', true)
-  // }
-
-  // componentWillUnmount() {
-  //   StatusBar.setBarStyle('light-content', true)
-  // }
-
   renderCharactersLeft = () => {
     const left = charLimit - this.state.content.length
     return (
@@ -41,6 +34,10 @@ class CreatePost extends Component {
   closeModal = () => {
     this.props.openCreatePostModal(!this.props.createPostVisible)
     Actions.pop()
+  }
+
+  createNewPost = () => {
+    CreateNewPost(this.state.content, this.closeModal())
   }
 
   render() {
@@ -68,7 +65,7 @@ class CreatePost extends Component {
               }}
               onKeyPress={(event) => {
                 if (event.nativeEvent.key === 'Enter') {
-                  // this.createPost()
+                  this.createNewPost()
                 }
               }}
               onChangeText={(content) => {
@@ -84,7 +81,7 @@ class CreatePost extends Component {
           </View>
 
           <View style={styles.sendPostBtnContainer}>
-            <TouchableOpacity style={styles.senPostBtn} onPress={() => null}>
+            <TouchableOpacity style={styles.senPostBtn} onPress={() => this.createNewPost()}>
               <Text style={styles.sendPostText}>Send The Feels</Text>
             </TouchableOpacity>
           </View>
