@@ -23,7 +23,7 @@ export const VoteDown = () => (
 )
 
 export const CommentIcon = () => (
-  <Ionicons name="ios-text-outline" size={36} color={MAIN} />
+  <Ionicons name="ios-text-outline" size={34} color={MAIN} />
 )
 
 export const FeedIcon = () => (
@@ -45,6 +45,6 @@ export class CreatePostIcon extends Component {
 }
 
 export const LikeIcon = () => (
-  <Ionicons name="ios-thumbs-up-outline" size={30} color={MAIN} />
+  <Ionicons name="ios-thumbs-up-outline" size={28} color={MAIN} />
 )
 

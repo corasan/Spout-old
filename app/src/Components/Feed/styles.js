@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { MAIN, TEXT, LIGHT_TEXT } from '../lib/theme'
+import { MAIN, TINT, LIGHT_TEXT, IOS_FONT, IOS_FONT_BOLD } from '../lib/theme'
 
 export default StyleSheet.create({
   feedContainer: {
@@ -26,17 +26,20 @@ export default StyleSheet.create({
   timeAgoText: {
     fontSize: 12,
     color: LIGHT_TEXT,
+    fontFamily: IOS_FONT,
   },
   usernameText: {
     color: MAIN,
     fontWeight: 'bold',
     fontSize: 16,
-    marginBottom: 18,
+    marginBottom: 16,
+    fontFamily: IOS_FONT,
   },
   postContentText: {
-    color: TEXT,
+    color: TINT,
     marginBottom: 15,
-    marginTop: 10,
+    marginTop: 5,
+    fontFamily: IOS_FONT,
   },
   leftCol: {
     flex: 0.2,
@@ -58,16 +61,17 @@ export default StyleSheet.create({
   },
   likeAndCommentText: {
     color: MAIN,
-    fontWeight: 'bold',
     fontSize: 15,
+    fontFamily: IOS_FONT_BOLD,
   },
   commentsCount: {
     position: 'absolute',
     backgroundColor: 'transparent',
-    top: 11,
-    right: 92,
+    top: 8,
+    right: 84,
     fontSize: 11,
     color: MAIN,
+    fontFamily: IOS_FONT,
   },
   icons: {
     marginRight: 6,

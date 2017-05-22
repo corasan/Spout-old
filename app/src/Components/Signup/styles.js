@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { BACKGROUND_GRAY, IOS_FONT, MAIN, TINT } from '../lib/theme'
+
+const { width } = Dimensions.get('window')
 
 export default StyleSheet.create({
   signupContainer: {
@@ -10,7 +12,7 @@ export default StyleSheet.create({
   signupBoxContainer: {
     marginTop: -30,
     justifyContent: 'center',
-    width: 326,
+    width: width - 80,
     backgroundColor: '#FFF',
     paddingBottom: 15,
     borderRadius: 4,

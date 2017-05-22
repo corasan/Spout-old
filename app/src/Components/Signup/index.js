@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native'
+import { View, TextInput, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { SignupWithEmail } from '../../../../api'
 import styles from './styles'
+
+const { height } = Dimensions.get('window')
+
 
 // TODO: make my own Text component with default font
 class Signup extends Component {
@@ -105,7 +108,7 @@ class Signup extends Component {
           </View>
         </View>
 
-        <View style={{ position: 'absolute', bottom: 20 }}>
+        <View style={{ position: 'absolute', top: height - 50 }}>
           <TouchableOpacity onPress={Actions.pop}>
             <Text style={styles.loginBtnText}>LOGIN</Text>
           </TouchableOpacity>
@@ -116,7 +119,7 @@ class Signup extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-    authBackground: auth.authBackground
+  authBackground: auth.authBackground,
 })
 
 export default connect(mapStateToProps)(Signup)

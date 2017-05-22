@@ -35,16 +35,6 @@ export default class PostsList extends Component {
         <View style={styles.postRow}>
           <View style={styles.leftCol}>
             <Image source={require('../assets/user-male.png')} />
-            {/* <View style={{ marginTop: 12, alignItems: 'center' }}>
-              <TouchableOpacity>
-                <VoteUp />
-              </TouchableOpacity>
-
-              <TouchableOpacity>
-                <VoteDown />
-              </TouchableOpacity>
-              <Text style={styles.votes}>{data.votes}</Text>
-            </View> */}
           </View>
 
           <View style={styles.rightCol}>

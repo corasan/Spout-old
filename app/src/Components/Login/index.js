@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, TextInput, Text, TouchableOpacity, StatusBar, AsyncStorage } from 'react-native'
+import { View, Image, TextInput, Text, TouchableOpacity, StatusBar, AsyncStorage, Dimensions} from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { AutoLogin } from '../../../../api/'
 import { loginUser } from '../../Actions/AuthActions'
 
 import styles from './styles'
+
+const { height } = Dimensions.get('window')
 
 class Login extends Component {
   static propTypes = {
@@ -79,7 +81,7 @@ class Login extends Component {
 
         </View>
 
-        <View style={{ position: 'absolute', bottom: 20 }}>
+        <View style={{ position: 'absolute', top: height - 50 }}>
           <TouchableOpacity onPress={Actions.signup}>
             <Text style={styles.signupBtnText}>SIGN UP</Text>
           </TouchableOpacity>
