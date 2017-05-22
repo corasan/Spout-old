@@ -3,7 +3,8 @@ import { StyleSheet, View } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-import { MAIN, LIGHT_TEXT } from './theme'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { MAIN, LIGHT_TEXT, TINT } from './theme'
 
 const styles = StyleSheet.create({
   voteIcons: {
@@ -13,21 +14,21 @@ const styles = StyleSheet.create({
   },
 })
 
-export const VoteUp = () => {
-  return <MaterialIcon name="arrow-drop-up" size={65} color={MAIN} style={styles.voteIcons} />
-}
+export const VoteUp = () => (
+  <MaterialIcon name="arrow-drop-up" size={65} color={MAIN} style={styles.voteIcons} />
+)
 
-export const VoteDown = () => {
-  return <MaterialIcon name="arrow-drop-down" size={65} color={LIGHT_TEXT} style={styles.voteIcons} />
-}
+export const VoteDown = () => (
+  <MaterialIcon name="arrow-drop-down" size={65} color={LIGHT_TEXT} style={styles.voteIcons} />
+)
 
-export const CommentIcon = () => {
-  return <EvilIcons name="comment" size={42} color={MAIN} />
-}
+export const CommentIcon = () => (
+  <Ionicons name="ios-text-outline" size={36} color={MAIN} />
+)
 
-export const FeedIcon = () => {
-  return <SimpleLineIcons name="feed" size={46} color={MAIN} />
-}
+export const FeedIcon = () => (
+  <SimpleLineIcons name="feed" size={46} color={MAIN} />
+)
 
 export class CreatePostIcon extends Component {
   setNativeProps(nativeProps) {
@@ -37,9 +38,13 @@ export class CreatePostIcon extends Component {
   render() {
     return (
       <View ref={thisComponent => this.createPost = thisComponent}>
-        <SimpleLineIcons name="pencil" size={22} color={MAIN} />
+        <SimpleLineIcons name="pencil" size={25} color={MAIN} />
       </View>
     )
   }
 }
+
+export const LikeIcon = () => (
+  <Ionicons name="ios-thumbs-up-outline" size={30} color={MAIN} />
+)
 

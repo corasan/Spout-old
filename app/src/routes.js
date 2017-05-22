@@ -31,7 +31,7 @@ class Routes extends Component {
 
   renderRightButton = () => {
     return (
-      <View style={{ marginRight: 5 }}>
+      <View style={{ marginRight: 5, marginTop: 3 }}>
         <TouchableOpacity onPress={() => this.openCreatePost()}>
           <CreatePostIcon />
         </TouchableOpacity>
@@ -50,7 +50,7 @@ class Routes extends Component {
             component={Main}
             hideNavBar={false}
             title="Feed"
-            titleStyle={{ fontFamily: 'ChalkboardSE-Bold', color: TINT }}
+            titleStyle={{ fontFamily: 'ChalkboardSE-Bold', color: TINT, fontSize: 26, marginBottom: 2 }}
             hideBackImage
             renderRightButton={() => this.renderRightButton()}
           />
@@ -76,9 +76,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(Routes)
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: 'white',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0,
     borderBottomColor: 'rgba(0, 0, 0, 0.15)',
-    height: 66,
+    height: 70,
   },
   title: {
     color: 'white',

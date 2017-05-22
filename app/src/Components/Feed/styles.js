@@ -4,7 +4,7 @@ import { MAIN, TEXT, LIGHT_TEXT } from '../lib/theme'
 export default StyleSheet.create({
   feedContainer: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 70,
   },
   // Styles for posts/post list
   postBox: {
@@ -12,9 +12,11 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.18,
-    marginBottom: 15,
+    marginBottom: 8,
+    marginTop: 8,
+    borderRadius: 4,
   },
   postHeader: {
     flexDirection: 'row',
@@ -39,7 +41,7 @@ export default StyleSheet.create({
   leftCol: {
     flex: 0.2,
     alignItems: 'center',
-    marginLeft: -8,
+    marginLeft: -15,
   },
   rightCol: {
     flex: 0.8,
@@ -54,16 +56,20 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  commentsText: {
+  likeAndCommentText: {
     color: MAIN,
     fontWeight: 'bold',
+    fontSize: 15,
   },
   commentsCount: {
     position: 'absolute',
     backgroundColor: 'transparent',
-    top: 10,
-    right: 88.5,
+    top: 11,
+    right: 92,
     fontSize: 11,
     color: MAIN,
+  },
+  icons: {
+    marginRight: 6,
   },
 })

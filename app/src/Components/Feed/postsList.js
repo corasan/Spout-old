@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, Text, TouchableOpacity, ListView } from 'react-native'
-import { VoteUp, VoteDown, CommentIcon } from '../lib/icons'
+import { LikeIcon, CommentIcon } from '../lib/icons'
 
 import styles from './styles'
 
@@ -35,7 +35,7 @@ export default class PostsList extends Component {
         <View style={styles.postRow}>
           <View style={styles.leftCol}>
             <Image source={require('../assets/user-male.png')} />
-            <View style={{ marginTop: 12, alignItems: 'center' }}>
+            {/* <View style={{ marginTop: 12, alignItems: 'center' }}>
               <TouchableOpacity>
                 <VoteUp />
               </TouchableOpacity>
@@ -44,7 +44,7 @@ export default class PostsList extends Component {
                 <VoteDown />
               </TouchableOpacity>
               <Text style={styles.votes}>{data.votes}</Text>
-            </View>
+            </View> */}
           </View>
 
           <View style={styles.rightCol}>
@@ -56,11 +56,22 @@ export default class PostsList extends Component {
           </View>
         </View>
 
-        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 2 }]}>
+        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 8 }]}>
+          <TouchableOpacity style={{ marginTop: 3.3, marginRight: 12 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={styles.icons}>
+                <LikeIcon />
+              </View>
+              <Text style={styles.likeAndCommentText}>Like</Text>
+            </View>
+          </TouchableOpacity>
+
           <TouchableOpacity>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <CommentIcon />
-              <Text style={styles.commentsText}>Comments</Text>
+              <View style={styles.icons}>
+                <CommentIcon />
+              </View>
+              <Text style={styles.likeAndCommentText}>Comments</Text>
             </View>
             <Text style={styles.commentsCount}>{data.commentsCount}</Text>
           </TouchableOpacity>

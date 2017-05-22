@@ -23,7 +23,7 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    // StatusBar.setHidden(true)
+    StatusBar.setBarStyle('light-content', true)
     AsyncStorage.getItem('User', (err, user) => {
       if (user) {
         const currentUser = JSON.parse(user)
