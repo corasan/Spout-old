@@ -73,7 +73,6 @@ class CreatePost extends Component {
                 }
               }}
               onChangeText={(content) => {
-                console.log(content)
                 this.setState({ content })
               }}
               value={this.state.content}

@@ -18,3 +18,7 @@ export function CreateNewPost(content: string, onComplete: Function) {
     }, () => onComplete)
   })
 }
+
+export function GetAllPosts() {
+  return POSTS_DB.once('value')
+}

@@ -1,14 +1,26 @@
 import { takeEvery, put, call, fork, all } from 'redux-saga/effects'
-import { CREATE_POST_REQUEST } from '../Util/types'
+import {
+  GET_POSTS_REQUEST,
+} from '../Util/types'
+import { GetAllPosts } from '../../../api'
+import { getPosts } from '../Actions'
 
-function* requestCreatePostSaga() {
-  yield takeEvery(CREATE_POST_REQUEST, function* (data) {
-    console.log(data)
+function* getPostsSaga() {
+  yield takeEvery(GET_POSTS_REQUEST, function* () {
+    try {
+      const snapshot = yield call(GetAllPosts)
+
+      if (snapshot.val()) {
+        yield put(getPosts.SUCCEEDED(snapshot.val()))
+      }
+    } catch (error) {
+      yield put(getPosts.FAILED(error))
+    }
   })
 }
 
-export default function* authRootSaga() {
+export default function* postsRootSaga() {
   yield all([
-    fork(requestCreatePostSaga),
+    fork(getPostsSaga),
   ])
 }

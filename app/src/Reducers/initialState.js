@@ -8,5 +8,6 @@ export default {
   postState: {
     post: {},
     createPostVisible: false,
+    postsAll: {},
   },
 }

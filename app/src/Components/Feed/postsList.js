@@ -4,23 +4,6 @@ import { LikeIcon, CommentIcon } from '../lib/icons'
 
 import styles from './styles'
 
-const dummyData = [
-  {
-    postContent: 'This is dummy data number 1',
-    username: 'corasan',
-    createdAt: '10 minutes ago',
-    commentsCount: '15',
-    votes: '53',
-  },
-  {
-    postContent: 'This is dummy data number 2, this a longer post. I should used lorem ipsum for this but meh.',
-    username: 'henrypl95',
-    createdAt: '2 days ago',
-    commentsCount: '34',
-    votes: '76',
-  },
-]
-
 export default class PostsList extends Component {
   constructor(props) {
     super(props)
@@ -42,7 +25,7 @@ export default class PostsList extends Component {
               <Text style={styles.usernameText}>{data.username}</Text>
               <Text style={styles.timeAgoText}>{data.createdAt}</Text>
             </View>
-            <Text style={styles.postContentText}>{data.postContent}</Text>
+            <Text style={styles.postContentText}>{data.content}</Text>
           </View>
         </View>
 
@@ -74,8 +57,9 @@ export default class PostsList extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ListView
-          dataSource={this.state.dataSource.cloneWithRows(dummyData)}
+          dataSource={this.state.dataSource.cloneWithRows(this.props.posts)}
           renderRow={this.renderPosts}
+          enableEmptySections
           style={{ paddingHorizontal: 16 }}
         />
       </View>
