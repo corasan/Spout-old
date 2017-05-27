@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, View, Text, TouchableOpacity, Image, TextInput, Dimensions } from 'react-native'
+import { Modal, View, Text, TouchableOpacity, Image, TextInput, Dimensions, Alert } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { openCreatePostModal } from '../../Actions'
@@ -37,6 +37,10 @@ class CreatePost extends Component {
   }
 
   createNewPost = () => {
+    if (this.state.content === '') {
+      Alert.alert('Write something first!')
+      return null
+    }
     CreateNewPost(this.state.content, this.closeModal())
   }
 
@@ -49,7 +53,7 @@ class CreatePost extends Component {
         onRequestClose={() => Actions.pop()}
       >
         <TouchableOpacity onPress={() => this.closeModal()} style={styles.closeModalBtn}>
-          <Image source={require('../assets/close.png')} style={styles.closeModalIcon} />
+          <Image source={require('../../assets/close.png')} style={styles.closeModalIcon} />
         </TouchableOpacity>
 
         <View style={styles.createPostContainer}>

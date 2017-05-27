@@ -14,12 +14,9 @@ export const openCreatePostModal = (payload: boolean) => ({
   payload,
 })
 
-// export const openCreatePostModal = (payload: boolean) => {
-//   return (dispatch) => {
-//     Actions.createPost()
-//     dispatchOpenCreatePost(dispatch, parseInt)
-//   }
-// }
+// export const getPosts = (payload: Object) => ({
+//   type: 
+// })
 
 // export const createPostSucceeded = (payload) => {
 //   return {

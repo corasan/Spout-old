@@ -41,7 +41,7 @@ class Signup extends Component {
       <Image source={this.props.authBackground} style={styles.signupContainer}>
         <View style={styles.signupBoxContainer}>
           <View style={{ alignItems: 'center', marginVertical: 12 }}>
-            <Image source={require('../assets/logo-login.png')} style={styles.logo} />
+            <Image source={require('../../assets/logo-login.png')} style={styles.logo} />
           </View>
 
           <View style={styles.inputContainer}>

@@ -34,7 +34,7 @@ export default class PostsList extends Component {
       <View style={styles.postBox}>
         <View style={styles.postRow}>
           <View style={styles.leftCol}>
-            <Image source={require('../assets/user-male.png')} />
+            <Image source={require('../../assets/user-male.png')} />
           </View>
 
           <View style={styles.rightCol}>

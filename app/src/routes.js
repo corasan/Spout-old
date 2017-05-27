@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, TouchableOpacity, Alert, View, AsyncStorage } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Router, Scene, Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { BACKGROUND_GRAY, TINT } from './Components/lib/theme'
