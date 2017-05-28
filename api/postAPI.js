@@ -5,7 +5,7 @@ const POSTS_DB = firebase.database().ref('Posts/')
 
 export function CreateNewPost(content: string, onComplete: Function) {
   const postID = POSTS_DB.push().key
-  const createdAt = new Date()
+  const createdAt = Date.now()
 
   AsyncStorage.getItem('User', (err, user) => {
     const currentUser = JSON.parse(user)

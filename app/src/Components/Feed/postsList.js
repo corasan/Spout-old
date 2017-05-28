@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View, Image, Text, TouchableOpacity, ListView } from 'react-native'
+import TimeAgo from 'react-native-timeago'
 import { LikeIcon, CommentIcon } from '../lib/icons'
 
 import styles from './styles'
 
 export default class PostsList extends Component {
+  static propTypes = {
+    posts: PropTypes.objectOf(PropTypes.object).isRequired,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -23,7 +29,7 @@ export default class PostsList extends Component {
           <View style={styles.rightCol}>
             <View style={styles.postHeader}>
               <Text style={styles.usernameText}>{data.username}</Text>
-              <Text style={styles.timeAgoText}>{data.createdAt}</Text>
+              <Text style={styles.timeAgoText}><TimeAgo time={data.createdAt} /></Text>
             </View>
             <Text style={styles.postContentText}>{data.content}</Text>
           </View>
@@ -66,5 +72,3 @@ export default class PostsList extends Component {
     )
   }
  }
-// <Image source={require('../assets/up.png')} style={[styles.votes, { marginBottom: -6 }]} />
-// <Image source={require('../assets/down-gray.png')} style={[styles.votes, { marginTop: -6 }]} />
