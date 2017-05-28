@@ -2,6 +2,7 @@ import {
   LOGIN_USER_SUCCEEDED,
   LOGIN_USER_REQUEST,
   LOGIN_USER_FAILED,
+  REFRESHING_FEED,
 } from '../Util/types'
 import InitialState from './initialState'
 
@@ -13,6 +14,8 @@ export default (state = InitialState.authState, action) => {
       return { ...state, user: action.payload }
     case LOGIN_USER_FAILED:
       return { ...state, failed: action.payload }
+    case REFRESHING_FEED:
+      return { ...state, refreshing: action.payload }
     default:
       return state
   }

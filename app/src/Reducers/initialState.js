@@ -9,5 +9,7 @@ export default {
     post: {},
     createPostVisible: false,
     postsAll: {},
+    refreshing: false,
+    shouldRefresh: false,
   },
 }

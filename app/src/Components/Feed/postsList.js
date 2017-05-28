@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, Text, TouchableOpacity, ListView } from 'react-native'
+import { View, Image, Text, TouchableOpacity, ListView, RefreshControl } from 'react-native'
+import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
 import { LikeIcon, CommentIcon } from '../lib/icons'
+import { getPosts, refreshingFeed } from '../../Actions'
 
 import styles from './styles'
 
-export default class PostsList extends Component {
+class PostsList extends Component {
   static propTypes = {
     posts: PropTypes.objectOf(PropTypes.object).isRequired,
+    refreshingFeed: PropTypes.func.isRequired,
+    getPosts: PropTypes.func.isRequired,
+    refreshing: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -59,6 +64,11 @@ export default class PostsList extends Component {
     )
   }
 
+  onRefresh = () => {
+    this.props.refreshingFeed(true)
+    this.props.getPosts(true)
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -67,8 +77,34 @@ export default class PostsList extends Component {
           renderRow={this.renderPosts}
           enableEmptySections
           style={{ paddingHorizontal: 16 }}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.props.refreshing}
+              onRefresh={() => this.onRefresh()}
+              tintColor="#1ABC9C"
+              title="Refreshing"
+              titleColor="#34495E"
+            />
+          }
         />
       </View>
     )
   }
  }
+
+ const mapDispatchToProps = (dispatch: Function) => ({
+  getPosts: (shouldRefresh) => {
+    dispatch(getPosts.REQUEST(shouldRefresh))
+  },
+  refreshingFeed: (refreshing) => {
+    dispatch(refreshingFeed(refreshing))
+  },
+})
+
+const mapStateToProps = ({ post }) => ({
+  postsAll: post.postsAll,
+  refreshing: post.refreshing,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsList)
+

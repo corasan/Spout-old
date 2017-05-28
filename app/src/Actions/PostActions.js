@@ -4,6 +4,7 @@ import {
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCEEDED,
   GET_POSTS_FAILED,
+  REFRESHING_FEED,
 } from '../Util/types'
 
 export const createPost = (payload: Object) => ({
@@ -17,7 +18,12 @@ export const openCreatePostModal = (payload: boolean) => ({
 })
 
 export const getPosts = {
-  REQUEST: () => ({ type: GET_POSTS_REQUEST }),
+  REQUEST: shouldRefresh => ({ type: GET_POSTS_REQUEST, shouldRefresh }),
   SUCCEEDED: posts => ({ type: GET_POSTS_SUCCEEDED, posts }),
   FAILED: error => ({ type: GET_POSTS_FAILED, error }),
 }
+
+export const refreshingFeed = payload => ({
+  type: REFRESHING_FEED,
+  payload,
+})

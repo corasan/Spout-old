@@ -8,11 +8,10 @@ import styles from './styles'
 
 class Feed extends Component {
   componentWillMount() {
-    this.props.getPosts()
+    this.props.getPosts(false)
   }
 
   render() {
-    console.log(this.props)
     return (
       <View style={styles.feedContainer}>
         <PostsList posts={this.props.postsAll} />
@@ -22,8 +21,8 @@ class Feed extends Component {
 }
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  getPosts: () => {
-    dispatch(getPosts.REQUEST())
+  getPosts: (shouldRefresh) => {
+    dispatch(getPosts.REQUEST(shouldRefresh))
   },
 })
 
