@@ -4,7 +4,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 import Feed from '../Feed'
 import Profile from '../Profile'
 import Settings from '../Settings'
-import TabBar from '../lib/tabBar'
+import TabBar from '../ui/tabBar'
 
 import styles from './styles'
 

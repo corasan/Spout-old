@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { View, Image, Text, TouchableOpacity, ListView, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
-import { LikeIcon, CommentIcon } from '../lib/icons'
+import { LikeIcon, CommentIcon } from '../ui/icons'
 import { getPosts, refreshingFeed } from '../../Actions'
 
 import styles from './styles'
@@ -33,7 +33,7 @@ class PostsList extends Component {
 
           <View style={styles.rightCol}>
             <View style={styles.postHeader}>
-              <Text style={styles.usernameText}>{data.username}</Text>
+              <Text style={styles.usernameText}>{data.owner}</Text>
               <Text style={styles.timeAgoText}><TimeAgo time={data.createdAt} /></Text>
             </View>
             <Text style={styles.postContentText}>{data.content}</Text>

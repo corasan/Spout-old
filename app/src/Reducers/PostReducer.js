@@ -3,7 +3,8 @@ import {
   CREATE_POST_MODAL_VISIBLE,
   GET_POSTS_SUCCEEDED,
   GET_POSTS_REQUEST,
-} from '../Util/types'
+  GET_POST_AUTHOR,
+} from '../Util/constants'
 import InitialState from './initialState'
 
 export default (state = InitialState.postState, action) => {
@@ -16,6 +17,8 @@ export default (state = InitialState.postState, action) => {
       return { ...state, shouldRefresh: action.shouldRefresh }
     case GET_POSTS_SUCCEEDED:
       return { ...state, postsAll: action.posts }
+    case GET_POST_AUTHOR:
+      return { ...state, postAuthor: action.author }
     default:
       return state
   }

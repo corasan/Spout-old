@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
-import { MAIN, LIGHT_TEXT, TINT } from '../lib/theme'
+import { MAIN, LIGHT_TEXT, TINT } from '../ui/theme'
 
 export default class TabBar extends Component {
   static propTypes = {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { MAIN, LIGHT_TEXT, TINT } from './theme'

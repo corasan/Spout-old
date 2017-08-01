@@ -3,7 +3,7 @@ import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_FAILED,
   REFRESHING_FEED,
-} from '../Util/types'
+} from '../Util/constants'
 import InitialState from './initialState'
 
 export default (state = InitialState.authState, action) => {

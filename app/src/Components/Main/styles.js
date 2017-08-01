@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { MAIN, TEXT, LIGHT_TEXT } from '../lib/theme'
+import { MAIN, TEXT, LIGHT_TEXT } from '../ui/theme'
 
 export default StyleSheet.create({
   mainContainer: {

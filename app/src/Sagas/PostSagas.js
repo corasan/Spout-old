@@ -1,22 +1,19 @@
 import { takeEvery, put, call, fork, all } from 'redux-saga/effects'
 import {
   GET_POSTS_REQUEST,
-  REFRESHING_FEED,
-} from '../Util/types'
-import { GetAllPosts } from '../../../api'
-import { getPosts, refreshingFeed } from '../Actions'
+  GET_POST_AUTHOR_REQUEST,
+} from '../Util/constants'
+import { GetAllPosts, GetPostAuthor } from '../../../api'
+import { getPosts, refreshingFeed, getPostAuthor } from '../Actions'
 
 function* getPostsSaga() {
   yield takeEvery(GET_POSTS_REQUEST, function* (data) {
-    console.log('GET_POSTS_REQUEST')
     try {
       const snapshot = yield call(GetAllPosts)
 
       if (snapshot.val()) {
-        console.log('snapshot')
         yield put(getPosts.SUCCEEDED(snapshot.val()))
         if (data.shouldRefresh) {
-          console.log('IF shouldRefresh')
           yield put(refreshingFeed(false))
         }
       }
@@ -26,8 +23,24 @@ function* getPostsSaga() {
   })
 }
 
+function* getPostAuthorSaga() {
+  yield takeEvery(GET_POST_AUTHOR_REQUEST, function* (data) {
+    try {
+      const snapshot = yield call(GetPostAuthor, data.authorUid)
+      console.log('SNAPSHOT', snapshot.val().username)
+
+      if (snapshot.val()) {
+        yield put(getPostAuthor.SUCCEEDED(snapshot.val().username))
+      }
+    } catch (error) {
+      yield put(getPostAuthor.FAILED(error))
+    }
+  })
+}
+
 export default function* postsRootSaga() {
   yield all([
     fork(getPostsSaga),
+    fork(getPostAuthorSaga),
   ])
 }

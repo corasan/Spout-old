@@ -5,7 +5,7 @@ import {
   GET_POSTS_SUCCEEDED,
   GET_POSTS_FAILED,
   REFRESHING_FEED,
-} from '../Util/types'
+} from '../Util/constants'
 
 export const createPost = (payload: Object) => ({
   type: CREATE_POST_REQUEST,

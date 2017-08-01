@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { MAIN, BACKGROUND_GRAY, IOS_FONT_BOLD, TINT, IOS_FONT } from '../lib/theme'
+import { MAIN, BACKGROUND_GRAY, IOS_FONT_BOLD, TINT, IOS_FONT } from '../ui/theme'
 
 export default StyleSheet.create({
   createPostContainer: {

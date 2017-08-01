@@ -16,8 +16,8 @@ const saveUserToDB = (uid: string, username: string, email: string, firstname: s
   })
 }
 // Save user login info locally. Used to save the user session
-const saveUserSession = (email: string, password: string, uid: string) => {
-  const user = { email, password, uid }
+const saveUserSession = (email: string, password: string, uid: string, username: string) => {
+  const user = { email, password, uid, username }
 
   AsyncStorage.setItem('User', JSON.stringify(user))
 }
@@ -34,7 +34,7 @@ const deleteUserSession = () => {
 export function LoginWithEmail(email: string, password: string) {
   AUTH.signInWithEmailAndPassword(email, password)
   .then((user) => {
-    saveUserSession(user.email, password, user.uid)
+    saveUserSession(user.email, password, user.uid, user.displayName)
     loginUserSuccess(user)
     Alert.alert(`Welcome back ${user.email}`)
   })
@@ -49,9 +49,11 @@ export function AutoLogin(email: string, password: string) {
 
 // Create user account
 // TODO: Username validation
+// TODO: Save user session after signup
 export function SignupWithEmail(newUser: { username: string, email: string, password: string, firstname: string, lastname: string }) {
   AUTH.createUserWithEmailAndPassword(newUser.email, newUser.password)
   .then((user) => {
+    user.updateProfile({ displayName: newUser.username })
     saveUserToDB(user.uid, newUser.username, newUser.email, newUser.firstname, newUser.lastname)
   })
   .then(() => Alert.alert('Account created'))

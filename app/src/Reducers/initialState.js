@@ -11,5 +11,6 @@ export default {
     postsAll: {},
     refreshing: false,
     shouldRefresh: false,
+    postAuthor: '',
   },
 }

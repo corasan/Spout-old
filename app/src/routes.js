@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Router, Scene, Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import { BACKGROUND_GRAY, TINT } from './Components/lib/theme'
-import { CreatePostIcon } from './Components/lib/icons'
+import { BACKGROUND_GRAY, TINT } from './Components/ui/theme'
+import { CreatePostIcon } from './Components/ui/icons'
 
 import { openCreatePostModal } from './Actions'
 
