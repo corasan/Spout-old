@@ -32,8 +32,8 @@ class CreatePost extends Component {
   }
 
   closeModal = () => {
-    this.props.openCreatePostModal(!this.props.createPostVisible)
     Actions.pop()
+    this.props.openCreatePostModal(!this.props.createPostVisible)
   }
 
   createNewPost = () => {
@@ -85,7 +85,7 @@ class CreatePost extends Component {
 
           <View style={styles.sendPostBtnContainer}>
             <TouchableOpacity style={styles.senPostBtn} onPress={() => this.createNewPost()}>
-              <Text style={styles.sendPostText}>Send The Feels</Text>
+              <Text style={styles.sendPostText}>Post</Text>
             </TouchableOpacity>
           </View>
         </View>

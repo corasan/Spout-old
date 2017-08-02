@@ -34,7 +34,7 @@ const deleteUserSession = () => {
 export function LoginWithEmail(email: string, password: string) {
   AUTH.signInWithEmailAndPassword(email, password)
   .then((user) => {
-    saveUserSession(user.email, password, user.uid, user.displayName)
+    saveUserSession(email, password, user.uid, user.displayName)
     loginUserSuccess(user)
     Alert.alert(`Welcome back ${user.email}`)
   })
@@ -49,13 +49,14 @@ export function AutoLogin(email: string, password: string) {
 
 // Create user account
 // TODO: Username validation
-// TODO: Save user session after signup
 export function SignupWithEmail(newUser: { username: string, email: string, password: string, firstname: string, lastname: string }) {
   AUTH.createUserWithEmailAndPassword(newUser.email, newUser.password)
   .then((user) => {
     user.updateProfile({ displayName: newUser.username })
     saveUserToDB(user.uid, newUser.username, newUser.email, newUser.firstname, newUser.lastname)
+    return user
   })
+  .then(user => saveUserSession(user.email, newUser.password, user.uid, user.username))
   .then(() => Alert.alert('Account created'))
   .then(() => Actions.main({ type: ActionConst.REPLACE }))
   .catch(err => console.log(err))
