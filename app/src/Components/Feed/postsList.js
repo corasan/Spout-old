@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, Text, TouchableOpacity, ListView, RefreshControl } from 'react-native'
+import { View, Image, Text, TouchableOpacity, ListView, RefreshControl, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
-import { LikeIcon, CommentIcon } from '../ui/icons'
+// import { MenuContext, Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu'
+import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
+import { LikeIcon, CommentIcon, MenuMore } from '../ui/icons'
 import { getPosts, refreshingFeed } from '../../Actions'
+import { DeletePost } from '../../../../api'
 
 import styles from './styles'
 
@@ -20,11 +23,52 @@ class PostsList extends Component {
     super(props)
     this.state = {
       dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
+      user: '',
     }
   }
 
-  renderPosts = (data) => {
-    return (
+  componentWillMount = () => {
+    AsyncStorage.getItem('User', (err, data) => {
+      const user = JSON.parse(data)
+      this.setState({ user })
+    })
+  }
+
+  renderDeletePost = (ownerUid) => {
+    if (this.state.user.uid === ownerUid) {
+      return (
+        <MenuOption value={'Delete'}>
+          <Text style={styles.deletePost}>Delete</Text>
+        </MenuOption>
+      )
+    }
+    return null
+  }
+  // TODO: make an action to delete posts
+  handleMenuSelect = (option, postId) => {
+    if (option === 'Delete') {
+      DeletePost(postId)
+    }
+  }
+
+  renderMenu = (uid, postId) => (
+    <View style={{ position: 'absolute', top: 5, right: -8 }}>
+      <Menu onSelect={value => this.handleMenuSelect(value, postId)}>
+        <MenuTrigger>
+          <MenuMore />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption>
+            <Text>Save</Text>
+          </MenuOption>
+          {this.renderDeletePost(uid)}
+        </MenuOptions>
+      </Menu>
+    </View>
+  )
+
+  renderPosts = data => (
+    <MenuContext>
       <View style={styles.postBox}>
         <View style={styles.postRow}>
           <View style={styles.leftCol}>
@@ -35,6 +79,7 @@ class PostsList extends Component {
             <View style={styles.postHeader}>
               <Text style={styles.usernameText}>{data.owner}</Text>
               <Text style={styles.timeAgoText}><TimeAgo time={data.createdAt} /></Text>
+              {this.renderMenu(data.ownerUid, data.id)}
             </View>
             <Text style={styles.postContentText}>{data.content}</Text>
           </View>
@@ -61,8 +106,8 @@ class PostsList extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    )
-  }
+    </MenuContext>
+  )
 
   onRefresh = () => {
     this.props.refreshingFeed(true)

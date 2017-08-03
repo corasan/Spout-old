@@ -12,6 +12,8 @@
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
+    "react-native-menu": "github:corasan/react-native-menu#master",
+    "react-native-popup-menu": "^0.8.0",
     "react-native-router-flux": "^3.38.0",
     "react-native-scrollable-tab-view": "^0.6.5",
     "react-native-timeago": "^0.3.0",

@@ -10,8 +10,8 @@ export function CreateNewPost(content: string, onComplete: Function) {
 
   AsyncStorage.getItem('User', (err, user) => {
     const currentUser = JSON.parse(user)
-    console.log(currentUser)
     POSTS_DB.child(postID).set({
+      id: postID,
       content,
       createdAt,
       ownerUid: currentUser.uid,
@@ -27,4 +27,8 @@ export function GetAllPosts() {
 
 export function GetPostAuthor(uid: string) {
   return USERS_DB.child(uid).once('value')
+}
+
+export function DeletePost(id: string) {
+  POSTS_DB.child(id).remove()
 }

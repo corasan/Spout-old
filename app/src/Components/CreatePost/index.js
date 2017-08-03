@@ -32,8 +32,8 @@ class CreatePost extends Component {
   }
 
   closeModal = () => {
-    Actions.pop()
     this.props.openCreatePostModal(!this.props.createPostVisible)
+    Actions.pop()
   }
 
   createNewPost = () => {
