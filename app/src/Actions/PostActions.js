@@ -5,6 +5,9 @@ import {
   GET_POSTS_SUCCEEDED,
   GET_POSTS_FAILED,
   REFRESHING_FEED,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCEEDED,
+  DELETE_POST_FAILED,
 } from '../Util/constants'
 
 export const createPost = (payload: Object) => ({
@@ -27,3 +30,9 @@ export const refreshingFeed = payload => ({
   type: REFRESHING_FEED,
   payload,
 })
+
+export const deletePost = {
+  REQUEST: postId => ({ type: DELETE_POST_REQUEST, postId }),
+  SUCCEEDED: postId => ({ type: DELETE_POST_SUCCEEDED, postId }),
+  FAILED: error => ({ type: DELETE_POST_FAILED, error }),
+}
