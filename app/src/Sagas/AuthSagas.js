@@ -1,5 +1,5 @@
 import { takeEvery, put, call, fork, all } from 'redux-saga/effects'
-import { LOGIN_USER_SUCCEEDED, LOGIN_USER_FAILED, LOGIN_USER_REQUEST } from '../Util/constants'
+import { LOGIN_USER_FAILED, LOGIN_USER_REQUEST } from '../Util/constants'
 import { LoginWithEmail } from '../../../api'
 
 function* requestUserAuthSaga() {

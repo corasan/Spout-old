@@ -20,7 +20,7 @@
     "global-require": "off",
     "max-len": "off",
     "semi": [2, "never"],
-    "jsx-boolean-value": "warn",
+    "jsx-boolean-value": "off",
     "import/no-unresolved": 0,
     "react/sort-comp": [2, {
       "order": [

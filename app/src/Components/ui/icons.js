@@ -47,3 +47,6 @@ export const LikeIcon = () => (
   <Ionicons name="ios-thumbs-up-outline" size={28} color={MAIN} />
 )
 
+export const MenuMore = () => (
+  <MaterialIcon name="more-vert" size={20} color={LIGHT_TEXT} style={styles.voteIcons} />
+)
