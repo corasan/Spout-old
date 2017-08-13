@@ -16,6 +16,7 @@ export function CreateNewPost(content: string, onComplete: Function) {
       ownerUid: currentUser.uid,
       owner: currentUser.username,
       likes: 0,
+      comments: 0,
     }, () => onComplete)
   })
 }

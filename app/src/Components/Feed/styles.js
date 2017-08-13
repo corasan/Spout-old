@@ -49,26 +49,20 @@ export default StyleSheet.create({
   rightCol: {
     flex: 0.8,
   },
-  votes: {
-    fontSize: 12,
-    marginTop: 2,
-    fontWeight: 'bold',
-    color: MAIN,
-  },
   postRow: {
     flex: 1,
     flexDirection: 'row',
   },
   likeAndCommentText: {
     color: MAIN,
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: IOS_FONT_BOLD,
   },
   commentsCount: {
     position: 'absolute',
     backgroundColor: 'transparent',
     top: 8,
-    right: 84,
+    right: 85,
     fontSize: 11,
     color: MAIN,
     fontFamily: IOS_FONT,

@@ -13,16 +13,8 @@ const styles = StyleSheet.create({
   },
 })
 
-export const VoteUp = () => (
-  <MaterialIcon name="arrow-drop-up" size={65} color={MAIN} style={styles.voteIcons} />
-)
-
-export const VoteDown = () => (
-  <MaterialIcon name="arrow-drop-down" size={65} color={LIGHT_TEXT} style={styles.voteIcons} />
-)
-
 export const CommentIcon = () => (
-  <Ionicons name="ios-text-outline" size={34} color={MAIN} />
+  <Ionicons name="ios-text-outline" size={26} color={MAIN} />
 )
 
 export const FeedIcon = () => (
@@ -44,9 +36,9 @@ export class CreatePostIcon extends Component {
 }
 
 export const LikeIcon = () => (
-  <Ionicons name="ios-thumbs-up-outline" size={28} color={MAIN} />
+  <Ionicons name="ios-thumbs-up-outline" size={20} color={MAIN} />
 )
 
 export const MenuMore = () => (
-  <MaterialIcon name="more-vert" size={20} color={LIGHT_TEXT} style={styles.voteIcons} />
+  <MaterialIcon name="more-horiz" size={24} color={MAIN} style={{ marginBottom: 2 }} />
 )

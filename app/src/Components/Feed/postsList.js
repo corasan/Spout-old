@@ -54,7 +54,7 @@ class PostsList extends Component {
   }
 
   renderMenu = (uid, postId) => (
-    <View style={{ position: 'absolute', top: 5, right: -8 }}>
+    <View>
       <Menu onSelect={value => this.handleMenuSelect(value, postId)}>
         <MenuTrigger>
           <MenuMore />
@@ -81,31 +81,39 @@ class PostsList extends Component {
             <View style={styles.postHeader}>
               <Text style={styles.usernameText}>{data.owner}</Text>
               <Text style={styles.timeAgoText}><TimeAgo time={data.createdAt} /></Text>
-              {this.renderMenu(data.ownerUid, data.id)}
             </View>
-            <Text style={styles.postContentText}>{data.content}</Text>
           </View>
         </View>
 
-        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 8 }]}>
-          <TouchableOpacity style={{ marginTop: 3.3, marginRight: 12 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={styles.icons}>
-                <LikeIcon />
-              </View>
-              <Text style={styles.likeAndCommentText}>Like</Text>
-            </View>
-          </TouchableOpacity>
+        <Text style={styles.postContentText}>{data.content}</Text>
 
-          <TouchableOpacity>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={styles.icons}>
-                <CommentIcon />
+        <View style={{ flex: 1, borderWidth: 0.4, borderColor: '#D1D1D1', marginTop: 16 }} />
+
+        <View style={styles.postRow}>
+          <View style={[styles.postRow, { justifyContent: 'flex-start', marginTop: 4 }]}>
+            <TouchableOpacity style={{ marginTop: 3.3, marginRight: 12 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.icons}>
+                  <LikeIcon />
+                </View>
+                <Text style={styles.likeAndCommentText}>Like</Text>
               </View>
-              <Text style={styles.likeAndCommentText}>Comments</Text>
-            </View>
-            <Text style={styles.commentsCount}>{data.commentsCount}</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.icons}>
+                  <CommentIcon />
+                </View>
+                <Text style={styles.likeAndCommentText}>Comment</Text>
+              </View>
+              {/* <Text style={styles.commentsCount}>{data.comments}</Text> */}
+            </TouchableOpacity>
+          </View>
+
+          {/* <View style={{ justifyContent: 'flex-end' }}>
+            {this.renderMenu(data.ownerUid, data.id)}
+          </View> */}
         </View>
       </View>
     </MenuContext>
