@@ -15,8 +15,8 @@ export function CreateNewPost(content: string, onComplete: Function) {
       createdAt,
       ownerUid: currentUser.uid,
       owner: currentUser.username,
-      likes: 0,
-      comments: 0,
+      agree: 0,
+      disagree: 0,
     }, () => onComplete)
   })
 }
@@ -28,3 +28,11 @@ export function GetAllPosts() {
 export function DeletePost(id: string) {
   POSTS_DB.child(id).remove()
 }
+
+export function GetPostLikes(id: string) {
+  POSTS_DB.child(id).once('value')
+}
+
+// export function LikePost(id: string, like: number) {
+//   POSTS_DB.child(id).update({ likes:  })
+// }

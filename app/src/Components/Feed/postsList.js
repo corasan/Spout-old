@@ -4,7 +4,7 @@ import { View, Image, Text, TouchableOpacity, ListView, RefreshControl, AsyncSto
 import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
-import { LikeIcon, CommentIcon, MenuMore } from '../ui/icons'
+import { AgreeIcon, DisagreeIcon, MenuMore } from '../ui/icons'
 import { getPosts, refreshingFeed, deletePost } from '../../Actions'
 
 import styles from './styles'
@@ -94,18 +94,18 @@ class PostsList extends Component {
             <TouchableOpacity style={{ marginTop: 3.3, marginRight: 12 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={styles.icons}>
-                  <LikeIcon />
+                  <AgreeIcon />
                 </View>
-                <Text style={styles.likeAndCommentText}>Like</Text>
+                <Text style={styles.likeAndCommentText}>Agree</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View style={styles.icons}>
-                  <CommentIcon />
+                <View style={[styles.icons, { marginTop: 5 }]}>
+                  <DisagreeIcon />
                 </View>
-                <Text style={styles.likeAndCommentText}>Comment</Text>
+                <Text style={styles.likeAndCommentText}>Disagree</Text>
               </View>
               {/* <Text style={styles.commentsCount}>{data.comments}</Text> */}
             </TouchableOpacity>

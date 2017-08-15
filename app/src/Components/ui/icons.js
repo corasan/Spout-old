@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   },
 })
 
-export const CommentIcon = () => (
-  <Ionicons name="ios-text-outline" size={26} color={MAIN} />
+export const DisagreeIcon = () => (
+  <Ionicons name="ios-thumbs-down-outline" size={20} color={MAIN} />
 )
 
 export const FeedIcon = () => (
@@ -35,7 +35,7 @@ export class CreatePostIcon extends Component {
   }
 }
 
-export const LikeIcon = () => (
+export const AgreeIcon = () => (
   <Ionicons name="ios-thumbs-up-outline" size={20} color={MAIN} />
 )
 
