@@ -29,10 +29,10 @@ export function DeletePost(id: string) {
   POSTS_DB.child(id).remove()
 }
 
-export function GetPostLikes(id: string) {
-  POSTS_DB.child(id).once('value')
+export function AgreeOrDisagree(id: string, number: number, type: string) {
+  if (type === 'agree') {
+    POSTS_DB.child(id).update({ agree: number + 1 })
+  }
+  POSTS_DB.child(id).update({ disagree: number + 1 })
 }
-
-// export function LikePost(id: string, like: number) {
-//   POSTS_DB.child(id).update({ likes:  })
-// }
+// make a db table with liked posts

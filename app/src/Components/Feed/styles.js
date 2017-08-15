@@ -53,9 +53,9 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  likeAndCommentText: {
-    color: MAIN,
-    fontSize: 14,
+  agreeAndDisagreeButton: {
+    color: '#a7a7a7',
+    fontSize: 12,
     fontFamily: IOS_FONT_BOLD,
   },
   commentsCount: {
@@ -69,5 +69,15 @@ export default StyleSheet.create({
   },
   icons: {
     marginRight: 6,
+  },
+  agreeAndDisagreeText: {
+    fontSize: 11,
+    color: LIGHT_TEXT,
+  },
+  lineDivide: {
+    flex: 1,
+    borderWidth: 0.4,
+    borderColor: LIGHT_TEXT,
+    marginTop: 4,
   },
 })

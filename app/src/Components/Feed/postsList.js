@@ -69,7 +69,7 @@ class PostsList extends Component {
     </View>
   )
 
-  renderPosts = data => (
+  renderPosts = post => (
     <MenuContext>
       <View style={styles.postBox}>
         <View style={styles.postRow}>
@@ -79,15 +79,20 @@ class PostsList extends Component {
 
           <View style={styles.rightCol}>
             <View style={styles.postHeader}>
-              <Text style={styles.usernameText}>{data.owner}</Text>
-              <Text style={styles.timeAgoText}><TimeAgo time={data.createdAt} /></Text>
+              <Text style={styles.usernameText}>{post.owner}</Text>
+              <Text style={styles.timeAgoText}><TimeAgo time={post.createdAt} /></Text>
             </View>
           </View>
         </View>
 
-        <Text style={styles.postContentText}>{data.content}</Text>
+        <Text style={styles.postContentText}>{post.content}</Text>
 
-        <View style={{ flex: 1, borderWidth: 0.4, borderColor: '#D1D1D1', marginTop: 16 }} />
+        <View style={{ marginTop: 18, flexDirection: 'row' }}>
+          <Text style={[styles.agreeAndDisagreeText, { marginRight: 6 }]}>{post.agree} agree</Text>
+          <Text style={styles.agreeAndDisagreeText}>{post.disagree} disagree</Text>
+        </View>
+
+        <View style={styles.lineDivide} />
 
         <View style={styles.postRow}>
           <View style={[styles.postRow, { justifyContent: 'flex-start', marginTop: 4 }]}>
@@ -96,7 +101,7 @@ class PostsList extends Component {
                 <View style={styles.icons}>
                   <AgreeIcon />
                 </View>
-                <Text style={styles.likeAndCommentText}>Agree</Text>
+                <Text style={styles.agreeAndDisagreeButton}>Agree</Text>
               </View>
             </TouchableOpacity>
 
@@ -105,14 +110,14 @@ class PostsList extends Component {
                 <View style={[styles.icons, { marginTop: 5 }]}>
                   <DisagreeIcon />
                 </View>
-                <Text style={styles.likeAndCommentText}>Disagree</Text>
+                <Text style={styles.agreeAndDisagreeButton}>Disagree</Text>
               </View>
-              {/* <Text style={styles.commentsCount}>{data.comments}</Text> */}
+              {/* <Text style={styles.commentsCount}>{post.comments}</Text> */}
             </TouchableOpacity>
           </View>
 
           {/* <View style={{ justifyContent: 'flex-end' }}>
-            {this.renderMenu(data.ownerUid, data.id)}
+            {this.renderMenu(post.ownerUid, post.id)}
           </View> */}
         </View>
       </View>

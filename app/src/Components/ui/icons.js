@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { MAIN, LIGHT_TEXT, TINT } from './theme'
+import { MAIN, LIGHT_TEXT, TINT, DARKER_GRAY } from './theme'
 
 const styles = StyleSheet.create({
   voteIcons: {
@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 })
-
-export const DisagreeIcon = () => (
-  <Ionicons name="ios-thumbs-down-outline" size={20} color={MAIN} />
-)
 
 export const FeedIcon = () => (
   <SimpleLineIcons name="feed" size={46} color={MAIN} />
@@ -36,7 +32,11 @@ export class CreatePostIcon extends Component {
 }
 
 export const AgreeIcon = () => (
-  <Ionicons name="ios-thumbs-up-outline" size={20} color={MAIN} />
+  <Ionicons name="ios-thumbs-up" size={14} color={DARKER_GRAY} />
+)
+
+export const DisagreeIcon = () => (
+  <Ionicons name="ios-thumbs-down" size={14} color={DARKER_GRAY} />
 )
 
 export const MenuMore = () => (
