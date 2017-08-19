@@ -57,6 +57,7 @@ export default StyleSheet.create({
     color: '#a7a7a7',
     fontSize: 12,
     fontFamily: IOS_FONT_BOLD,
+    fontWeight: '100',
   },
   commentsCount: {
     position: 'absolute',

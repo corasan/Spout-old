@@ -7,6 +7,8 @@ import {
   GET_POST_AUTHOR,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCEEDED,
+  POST_AGREE,
+  POST_DISAGREE,
 } from '../Util/constants'
 import InitialState from './initialState'
 
@@ -26,6 +28,10 @@ export default (state = InitialState.postState, action) => {
       return { ...state, postToDelete: action.postId }
     case DELETE_POST_SUCCEEDED:
       return { ...state, postsAll: _.filter(state.postsAll, id => id !== action.postId) }
+    case POST_AGREE:
+      return { ...state, agreePostId: action.postId }
+    case POST_DISAGREE:
+      return { ...state, disagreePostId: action.postId }
     default:
       return state
   }

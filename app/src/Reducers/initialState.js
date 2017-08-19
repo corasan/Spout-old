@@ -12,5 +12,7 @@ export default {
     refreshing: false,
     shouldRefresh: false,
     postAuthor: '',
+    agreePostId: '',
+    disagreePostId: '',
   },
 }

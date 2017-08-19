@@ -8,6 +8,8 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCEEDED,
   DELETE_POST_FAILED,
+  POST_AGREE,
+  POST_DISAGREE,
 } from '../Util/constants'
 
 export const createPost = (payload: Object) => ({
@@ -36,3 +38,13 @@ export const deletePost = {
   SUCCEEDED: postId => ({ type: DELETE_POST_SUCCEEDED, postId }),
   FAILED: error => ({ type: DELETE_POST_FAILED, error }),
 }
+
+export const postAgree = postId => ({
+  type: POST_AGREE,
+  postId,
+})
+
+export const postDisagree = postId => ({
+  type: POST_DISAGREE,
+  postId,
+})

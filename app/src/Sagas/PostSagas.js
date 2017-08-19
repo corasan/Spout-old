@@ -2,9 +2,10 @@ import { takeEvery, put, call, fork, all } from 'redux-saga/effects'
 import {
   GET_POSTS_REQUEST,
   DELETE_POST_REQUEST,
+  POST_AGREE,
 } from '../Util/constants'
-import { GetAllPosts, DeletePost } from '../../../api'
-import { getPosts, refreshingFeed, deletePost } from '../Actions'
+import { GetAllPosts, DeletePost, PostAgree, PostDisagree } from '../../../api'
+import { getPosts, refreshingFeed, deletePost, postAgree } from '../Actions'
 
 function* getPostsSaga() {
   yield takeEvery(GET_POSTS_REQUEST, function* (data) {
@@ -34,9 +35,20 @@ function* deletePostSaga() {
   })
 }
 
+function* postAgreeSaga() {
+  yield takeEvery(POST_AGREE, function* (data) {
+    try {
+      yield call(PostAgree, data.postId)
+    } catch (error) {
+      yield put(postAgree.FAILED(error))
+    }
+  })
+}
+
 export default function* postsRootSaga() {
   yield all([
     fork(getPostsSaga),
     fork(deletePostSaga),
+    fork(postAgreeSaga),
   ])
 }
