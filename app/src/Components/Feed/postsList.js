@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
 import { AgreeIcon, DisagreeIcon, MenuMore } from '../ui/icons'
-import { getPosts, refreshingFeed, deletePost, postAgree } from '../../Actions'
+import { getPosts, refreshingFeed, deletePost, postAgree, postDisagree } from '../../Actions'
 
 import styles from './styles'
 
@@ -19,6 +19,8 @@ class PostsList extends Component {
     getPosts: PropTypes.func.isRequired,
     refreshing: PropTypes.bool.isRequired,
     deletePost: PropTypes.func.isRequired,
+    postAgree: PropTypes.func.isRequired,
+    postDisagree: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -105,7 +107,7 @@ class PostsList extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.postDisagree(post.id)}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={[styles.icons, { marginTop: 5 }]}>
                   <DisagreeIcon />
@@ -164,6 +166,9 @@ class PostsList extends Component {
   },
   postAgree: (postId) => {
     dispatch(postAgree(postId))
+  },
+  postDisagree: (postId) => {
+    dispatch(postDisagree(postId))
   },
 })
 

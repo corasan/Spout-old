@@ -3,6 +3,7 @@ import {
   GET_POSTS_REQUEST,
   DELETE_POST_REQUEST,
   POST_AGREE,
+  POST_DISAGREE,
 } from '../Util/constants'
 import { GetAllPosts, DeletePost, PostAgree, PostDisagree } from '../../../api'
 import { getPosts, refreshingFeed, deletePost, postAgree } from '../Actions'
@@ -45,10 +46,21 @@ function* postAgreeSaga() {
   })
 }
 
+function* postDisagreeSaga() {
+  yield takeEvery(POST_DISAGREE, function* (data) {
+    try {
+      yield call(PostDisagree, data.postId)
+    } catch (error) {
+      yield put(postAgree.FAILED(error))
+    }
+  })
+}
+
 export default function* postsRootSaga() {
   yield all([
     fork(getPostsSaga),
     fork(deletePostSaga),
     fork(postAgreeSaga),
+    fork(postDisagreeSaga),
   ])
 }
