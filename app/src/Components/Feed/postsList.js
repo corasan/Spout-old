@@ -4,7 +4,7 @@ import { View, Image, Text, TouchableOpacity, ListView, RefreshControl, AsyncSto
 import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
 import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
-import { AgreeIcon, DisagreeIcon, MenuMore } from '../ui/icons'
+import { AgreeIcon, DisagreeIcon, MenuMore, AgreeIconPressed, DisagreeIconPressed } from '../ui/icons'
 import { getPosts, refreshingFeed, deletePost, postAgree, postDisagree } from '../../Actions'
 
 import styles from './styles'
@@ -28,6 +28,8 @@ class PostsList extends Component {
     this.state = {
       dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
       user: '',
+      agreePressed: false,
+      disagreePressed: false,
     }
   }
 
@@ -38,8 +40,8 @@ class PostsList extends Component {
     })
   }
 
-  renderDeletePost = (ownerUid) => {
-    if (this.state.user.uid === ownerUid) {
+  renderDeletePost = (uid) => {
+    if (this.state.user.uid === uid) {
       return (
         <MenuOption value={'Delete'}>
           <Text style={styles.deletePost}>Delete</Text>
@@ -71,6 +73,40 @@ class PostsList extends Component {
     </View>
   )
 
+  handleAgreeButton = (postId) => {
+    this.setState({ agreePressed: !this.state.agreePressed, disagreePressed: false })
+    this.props.postAgree(postId)
+  }
+
+  handleDisagreeButton = (postId) => {
+    this.setState({ disagreePressed: !this.state.disagreePressed, agreePressed: false })
+    this.props.postDisagree(postId)
+  }
+
+  renderAgreeIcon = () => {
+    const pressed = this.state.agreePressed
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={styles.icons}>
+          {pressed ? <AgreeIconPressed /> : <AgreeIcon />}
+        </View>
+        <Text style={[styles.agreeAndDisagreeButton, { color: pressed ? '#1ABC9C' : '#bcbcbc' }]}>Agree</Text>
+      </View>
+    )
+  }
+
+  renderDisagreeIcon = () => {
+    const pressed = this.state.disagreePressed
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={[styles.icons, { marginTop: 5 }]}>
+          {pressed ? <DisagreeIconPressed /> : <DisagreeIcon />}
+        </View>
+        <Text style={[styles.agreeAndDisagreeButton, { color: pressed ? '#1ABC9C' : '#bcbcbc' }]}>Disagree</Text>
+      </View>
+    )
+  }
+
   renderPosts = post => (
     <MenuContext>
       <View style={styles.postBox}>
@@ -81,8 +117,8 @@ class PostsList extends Component {
 
           <View style={styles.rightCol}>
             <View style={styles.postHeader}>
-              <Text style={styles.usernameText}>{post.owner}</Text>
-              <Text style={styles.timeAgoText}><TimeAgo time={post.createdAt} /></Text>
+              <Text style={styles.usernameText}>{post.author}</Text>
+              <Text style={styles.timeAgoText}><TimeAgo time={post.created_at} /></Text>
             </View>
           </View>
         </View>
@@ -98,23 +134,12 @@ class PostsList extends Component {
 
         <View style={styles.postRow}>
           <View style={[styles.postRow, { justifyContent: 'flex-start', marginTop: 4 }]}>
-            <TouchableOpacity style={{ marginTop: 1, marginRight: 12 }} onPress={() => this.props.postAgree(post.id)}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View style={styles.icons}>
-                  <AgreeIcon />
-                </View>
-                <Text style={styles.agreeAndDisagreeButton}>Agree</Text>
-              </View>
+            <TouchableOpacity style={{ marginTop: 1, marginRight: 12 }} onPress={() => this.handleAgreeButton(post.id)}>
+              {this.renderAgreeIcon()}
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.postDisagree(post.id)}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View style={[styles.icons, { marginTop: 5 }]}>
-                  <DisagreeIcon />
-                </View>
-                <Text style={styles.agreeAndDisagreeButton}>Disagree</Text>
-              </View>
-              {/* <Text style={styles.commentsCount}>{post.comments}</Text> */}
+            <TouchableOpacity onPress={() => this.handleDisagreeButton(post.id)}>
+              {this.renderDisagreeIcon()}
             </TouchableOpacity>
           </View>
 

@@ -20,8 +20,8 @@ export function CreateNewPost(content: string, onComplete: Function) {
       id: postID,
       content,
       createdAt,
-      ownerUid: currentUser.uid,
-      owner: currentUser.username,
+      user_id: currentUser.uid,
+      author: currentUser.username,
       agree: 0,
       disagree: 0,
     }, () => onComplete)

@@ -39,6 +39,14 @@ export const DisagreeIcon = () => (
   <Ionicons name="ios-thumbs-down" size={14} color={DARKER_GRAY} />
 )
 
+export const AgreeIconPressed = () => (
+  <Ionicons name="ios-thumbs-up" size={14} color={MAIN} />
+)
+
+export const DisagreeIconPressed = () => (
+  <Ionicons name="ios-thumbs-down" size={14} color={MAIN} />
+)
+
 export const MenuMore = () => (
-  <MaterialIcon name="more-horiz" size={24} color={MAIN} style={{ marginBottom: 2 }} />
+  <MaterialIcon name="more-horiz" size={24} color={DARKER_GRAY} style={{ marginBottom: 2 }} />
 )
