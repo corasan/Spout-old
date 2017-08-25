@@ -1,30 +1,125 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, Text, TouchableOpacity, ListView, RefreshControl } from 'react-native'
+import { View, Image, Text, TouchableOpacity, ListView, RefreshControl, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import TimeAgo from 'react-native-timeago'
-import { LikeIcon, CommentIcon } from '../ui/icons'
-import { getPosts, refreshingFeed } from '../../Actions'
+import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu'
+import { AgreeIcon, DisagreeIcon, MenuMore, AgreeIconPressed, DisagreeIconPressed } from '../ui/icons'
+import { getPosts, refreshingFeed, deletePost, postAgree, postDisagree } from '../../Actions'
 
 import styles from './styles'
 
 class PostsList extends Component {
   static propTypes = {
-    posts: PropTypes.objectOf(PropTypes.object).isRequired,
+    posts: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array,
+    ]).isRequired,
     refreshingFeed: PropTypes.func.isRequired,
     getPosts: PropTypes.func.isRequired,
     refreshing: PropTypes.bool.isRequired,
+    deletePost: PropTypes.func.isRequired,
+    postAgree: PropTypes.func.isRequired,
+    postDisagree: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props)
     this.state = {
       dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
+      user: '',
+      agreePressed: false,
+      disagreePressed: false,
     }
   }
 
-  renderPosts = (data) => {
+  componentWillMount = () => {
+    AsyncStorage.getItem('User', (err, data) => {
+      const user = JSON.parse(data)
+      this.setState({ user })
+    })
+    // this.props.postAgree()
+  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.agreed !== nextProps.agreed) {
+  //     console.log('hello')
+  //     console.log('post', nextProps.agreed)
+  //   }
+  // }
+
+  renderDeletePost = (uid) => {
+    if (this.state.user.uid === uid) {
+      return (
+        <MenuOption value={'Delete'}>
+          <Text style={styles.deletePost}>Delete</Text>
+        </MenuOption>
+      )
+    }
+    return null
+  }
+
+  handleMenuSelect = (option, postId) => {
+    if (option === 'Delete') {
+      this.props.deletePost(postId)
+    }
+  }
+
+  renderMenu = (uid, postId) => (
+    <View>
+      <Menu onSelect={value => this.handleMenuSelect(value, postId)}>
+        <MenuTrigger>
+          <MenuMore />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption>
+            <Text>Save</Text>
+          </MenuOption>
+          {this.renderDeletePost(uid)}
+        </MenuOptions>
+      </Menu>
+    </View>
+  )
+
+  handleAgreeButton = (postId) => {
+    this.setState({ agreePressed: !this.state.agreePressed, disagreePressed: false })
+    // this.props.postAgree(postId, this.state.user.uid)
+  }
+
+  handleDisagreeButton = (postId) => {
+    this.setState({ disagreePressed: !this.state.disagreePressed, agreePressed: false })
+    // this.props.postDisagree(postId)
+  }
+
+  renderAgreeIcon = (postId) => {
+    // const uid = this.state.user.uid
+    // this.props.postAgree(postId)
+    const agreed = false // this.props.agreed[postId][`${uid}`]
+    // console.log('post', this.props.agreed[postId][`${uid}`])
+    // console.log('user', typeof this.state.user.uid)
     return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={styles.icons}>
+          {agreed ? <AgreeIconPressed /> : <AgreeIcon />}
+        </View>
+        <Text style={[styles.agreeAndDisagreeButton, { color: agreed ? '#1ABC9C' : '#bcbcbc' }]}>Agree</Text>
+      </View>
+    )
+  }
+
+  renderDisagreeIcon = () => {
+    const pressed = false
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={[styles.icons, { marginTop: 5 }]}>
+          {pressed ? <DisagreeIconPressed /> : <DisagreeIcon />}
+        </View>
+        <Text style={[styles.agreeAndDisagreeButton, { color: pressed ? '#1ABC9C' : '#bcbcbc' }]}>Disagree</Text>
+      </View>
+    )
+  }
+
+  renderPosts = post => (
+    <MenuContext>
       <View style={styles.postBox}>
         <View style={styles.postRow}>
           <View style={styles.leftCol}>
@@ -33,36 +128,39 @@ class PostsList extends Component {
 
           <View style={styles.rightCol}>
             <View style={styles.postHeader}>
-              <Text style={styles.usernameText}>{data.owner}</Text>
-              <Text style={styles.timeAgoText}><TimeAgo time={data.createdAt} /></Text>
+              <Text style={styles.usernameText}>{post.author}</Text>
+              <Text style={styles.timeAgoText}><TimeAgo time={post.created_at} /></Text>
             </View>
-            <Text style={styles.postContentText}>{data.content}</Text>
           </View>
         </View>
 
-        <View style={[styles.postRow, { justifyContent: 'flex-end', marginTop: 8 }]}>
-          <TouchableOpacity style={{ marginTop: 3.3, marginRight: 12 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={styles.icons}>
-                <LikeIcon />
-              </View>
-              <Text style={styles.likeAndCommentText}>Like</Text>
-            </View>
-          </TouchableOpacity>
+        <Text style={styles.postContentText}>{post.content}</Text>
 
-          <TouchableOpacity>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={styles.icons}>
-                <CommentIcon />
-              </View>
-              <Text style={styles.likeAndCommentText}>Comments</Text>
-            </View>
-            <Text style={styles.commentsCount}>{data.commentsCount}</Text>
-          </TouchableOpacity>
+        <View style={{ marginTop: 18, flexDirection: 'row' }}>
+          <Text style={[styles.agreeAndDisagreeText, { marginRight: 6 }]}>{post.agree} agree</Text>
+          <Text style={styles.agreeAndDisagreeText}>{post.disagree} disagree</Text>
+        </View>
+
+        <View style={styles.lineDivide} />
+
+        <View style={styles.postRow}>
+          <View style={[styles.postRow, { justifyContent: 'flex-start', marginTop: 4 }]}>
+            <TouchableOpacity style={{ marginTop: 1, marginRight: 12 }} onPress={() => this.handleAgreeButton(post.id)}>
+              {this.renderAgreeIcon(post.id)}
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.handleDisagreeButton(post.id)}>
+              {this.renderDisagreeIcon()}
+            </TouchableOpacity>
+          </View>
+
+          {/* <View style={{ justifyContent: 'flex-end' }}>
+            {this.renderMenu(post.ownerUid, post.id)}
+          </View> */}
         </View>
       </View>
-    )
-  }
+    </MenuContext>
+  )
 
   onRefresh = () => {
     this.props.refreshingFeed(true)
@@ -99,11 +197,21 @@ class PostsList extends Component {
   refreshingFeed: (refreshing) => {
     dispatch(refreshingFeed(refreshing))
   },
+  deletePost: (postId) => {
+    dispatch(deletePost.REQUEST(postId))
+  },
+  postAgree: (postId) => {
+    dispatch(postAgree(postId))
+  },
+  postDisagree: (postId) => {
+    dispatch(postDisagree(postId))
+  },
 })
 
 const mapStateToProps = ({ post }) => ({
   postsAll: post.postsAll,
   refreshing: post.refreshing,
+  agreed: post.agreed,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsList)
