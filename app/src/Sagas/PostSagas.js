@@ -1,12 +1,13 @@
-import { takeEvery, put, call, fork, all } from 'redux-saga/effects'
+import { takeEvery, put, call, fork, all, take } from 'redux-saga/effects'
 import {
   GET_POSTS_REQUEST,
   DELETE_POST_REQUEST,
   POST_AGREE,
   POST_DISAGREE,
+  AGREED_POST,
 } from '../Util/constants'
-import { GetAllPosts, DeletePost, PostAgree, PostDisagree } from '../../../api'
-import { getPosts, refreshingFeed, deletePost, postAgree } from '../Actions'
+import { GetAllPosts, DeletePost, PostAgree } from '../../../api'
+import { getPosts, refreshingFeed, deletePost } from '../Actions'
 
 function* getPostsSaga() {
   yield takeEvery(GET_POSTS_REQUEST, function* (data) {
@@ -38,29 +39,45 @@ function* deletePostSaga() {
 
 function* postAgreeSaga() {
   yield takeEvery(POST_AGREE, function* (data) {
+    // console.log('before')
     try {
-      yield call(PostAgree, data.postId)
-    } catch (error) {
-      yield put(postAgree.FAILED(error))
-    }
-  })
-}
+      const snapshot = yield call(PostAgree, data.postId)
+      // console.log('after')
 
-function* postDisagreeSaga() {
-  yield takeEvery(POST_DISAGREE, function* (data) {
-    try {
-      yield call(PostDisagree, data.postId)
+      // console.log('data', snapshot.val())
+      if (snapshot.val()) {
+        yield put({ type: AGREED_POST, agreed: snapshot.val() })
+      }
     } catch (error) {
-      yield put(postAgree.FAILED(error))
+      console.log(error)
     }
   })
 }
+// function* postAgreeSaga() {
+//   yield takeEvery(POST_AGREE, function* (data) {
+//     try {
+//       yield call(PostAgree, data.postId)
+//     } catch (error) {
+//       yield put(postAgree.FAILED(error))
+//     }
+//   })
+// }
+
+// function* postDisagreeSaga() {
+//   yield takeEvery(POST_DISAGREE, function* (data) {
+//     try {
+//       yield call(PostDisagree, data.postId)
+//     } catch (error) {
+//       yield put(postAgree.FAILED(error))
+//     }
+//   })
+// }
 
 export default function* postsRootSaga() {
   yield all([
     fork(getPostsSaga),
     fork(deletePostSaga),
     fork(postAgreeSaga),
-    fork(postDisagreeSaga),
+    // fork(postDisagreeSaga),
   ])
 }

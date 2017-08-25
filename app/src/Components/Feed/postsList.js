@@ -38,7 +38,14 @@ class PostsList extends Component {
       const user = JSON.parse(data)
       this.setState({ user })
     })
+    // this.props.postAgree()
   }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.agreed !== nextProps.agreed) {
+  //     console.log('hello')
+  //     console.log('post', nextProps.agreed)
+  //   }
+  // }
 
   renderDeletePost = (uid) => {
     if (this.state.user.uid === uid) {
@@ -75,28 +82,32 @@ class PostsList extends Component {
 
   handleAgreeButton = (postId) => {
     this.setState({ agreePressed: !this.state.agreePressed, disagreePressed: false })
-    this.props.postAgree(postId)
+    // this.props.postAgree(postId, this.state.user.uid)
   }
 
   handleDisagreeButton = (postId) => {
     this.setState({ disagreePressed: !this.state.disagreePressed, agreePressed: false })
-    this.props.postDisagree(postId)
+    // this.props.postDisagree(postId)
   }
 
-  renderAgreeIcon = () => {
-    const pressed = this.state.agreePressed
+  renderAgreeIcon = (postId) => {
+    // const uid = this.state.user.uid
+    // this.props.postAgree(postId)
+    const agreed = false // this.props.agreed[postId][`${uid}`]
+    // console.log('post', this.props.agreed[postId][`${uid}`])
+    // console.log('user', typeof this.state.user.uid)
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={styles.icons}>
-          {pressed ? <AgreeIconPressed /> : <AgreeIcon />}
+          {agreed ? <AgreeIconPressed /> : <AgreeIcon />}
         </View>
-        <Text style={[styles.agreeAndDisagreeButton, { color: pressed ? '#1ABC9C' : '#bcbcbc' }]}>Agree</Text>
+        <Text style={[styles.agreeAndDisagreeButton, { color: agreed ? '#1ABC9C' : '#bcbcbc' }]}>Agree</Text>
       </View>
     )
   }
 
   renderDisagreeIcon = () => {
-    const pressed = this.state.disagreePressed
+    const pressed = false
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={[styles.icons, { marginTop: 5 }]}>
@@ -135,7 +146,7 @@ class PostsList extends Component {
         <View style={styles.postRow}>
           <View style={[styles.postRow, { justifyContent: 'flex-start', marginTop: 4 }]}>
             <TouchableOpacity style={{ marginTop: 1, marginRight: 12 }} onPress={() => this.handleAgreeButton(post.id)}>
-              {this.renderAgreeIcon()}
+              {this.renderAgreeIcon(post.id)}
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => this.handleDisagreeButton(post.id)}>
@@ -200,6 +211,7 @@ class PostsList extends Component {
 const mapStateToProps = ({ post }) => ({
   postsAll: post.postsAll,
   refreshing: post.refreshing,
+  agreed: post.agreed,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsList)

@@ -44,7 +44,7 @@ export const postAgree = postId => ({
   postId,
 })
 
-export const postDisagree = postId => ({
+export const postDisagree = post => ({
   type: POST_DISAGREE,
-  postId,
+  post,
 })
