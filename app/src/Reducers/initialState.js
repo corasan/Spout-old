@@ -12,5 +12,8 @@ export default {
     refreshing: false,
     shouldRefresh: false,
     postAuthor: '',
+    postAgree: '',
+    agreed: {},
+    disagreePostId: '',
   },
 }

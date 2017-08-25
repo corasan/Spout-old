@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, TextInput, Text, TouchableOpacity, StatusBar, AsyncStorage, Dimensions} from 'react-native'
+import { View, Image, TextInput, Text, TouchableOpacity, StatusBar, AsyncStorage, Dimensions } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { AutoLogin } from '../../../../api/'

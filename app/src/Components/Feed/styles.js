@@ -49,31 +49,36 @@ export default StyleSheet.create({
   rightCol: {
     flex: 0.8,
   },
-  votes: {
-    fontSize: 12,
-    marginTop: 2,
-    fontWeight: 'bold',
-    color: MAIN,
-  },
   postRow: {
     flex: 1,
     flexDirection: 'row',
   },
-  likeAndCommentText: {
-    color: MAIN,
-    fontSize: 15,
+  agreeAndDisagreeButton: {
+    color: '#a7a7a7',
+    fontSize: 12,
     fontFamily: IOS_FONT_BOLD,
+    fontWeight: '100',
   },
   commentsCount: {
     position: 'absolute',
     backgroundColor: 'transparent',
     top: 8,
-    right: 84,
+    right: 85,
     fontSize: 11,
     color: MAIN,
     fontFamily: IOS_FONT,
   },
   icons: {
     marginRight: 6,
+  },
+  agreeAndDisagreeText: {
+    fontSize: 11,
+    color: LIGHT_TEXT,
+  },
+  lineDivide: {
+    flex: 1,
+    borderWidth: 0.4,
+    borderColor: LIGHT_TEXT,
+    marginTop: 4,
   },
 })
